@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <div data-widget-name="menu">Choose the genre</div>
+  <a name="list">the list</a>
+<ul>
+  <li><a href="http://google.com">http://google.com</a></li>
+  <li><a href="/tutorial">/tutorial.html</a></li>
+  <li><a href="local/path">local/path</a></li>
+  <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+  <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+  <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+</ul>
+
+
+  <script>
+    var div = document.getElementsByTagName('div')[0].getAttribute('data-widget-name')
+
+    for(let link of document.getElementsByTagName('a')){
+        let p = link.getAttribute('href')
+        if(p !== null) {
+        if(p.includes('://') && !p.includes('http://internal.com', 0)){
+            link.style.color = 'orange'
+            
+        }
+        }
+    }
+    var newdiv = document.createElement("div");
+    function showNotification({top, right, className, html}) {
+      newdiv.classList.add(className);
+      newdiv.style.marginTop = top + 'px'
+      newdiv.style.marginRight = right + 'px'
+      newdiv.style.backgroundColor = 'gray'
+      newdiv.style.float = 'right'
+      newdiv.textContent = html
+      newdiv.style.display = "",
+      document.body.append(newdiv)
+      setTimeout(() => newdiv.style.display = "none", 2000)
+      }
+  let i = 1;
+
+  var func = setInterval(() =>
+    showNotification({
+  top: 10, 
+  right: 10, 
+  html: "Hello!" + i++, 
+  className: "notification" 
+    }), 4000)
+    newdiv.addEventListener('click', () => clearInterval(func))
+   
+  </script>
+</body>
+</html>
