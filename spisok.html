@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title></title>
+ </head>
+ <body>
+     <script>
+        let list = document.createElement('ul')
+        document.body.append(list)
+            function get(){
+            var take = prompt("Введите пункт:")
+            if(take !== '' && take !== null){
+                let point = document.createElement('li')
+                point.textContent = take
+                list.append(point)
+                return true
+                
+            }
+            else{
+                return false
+            }
+        }
+        let result = true
+        while(result){
+            result = get()
+        }
+        
+     </script>
+ </body>
+</html>

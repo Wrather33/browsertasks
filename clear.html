@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>clear</title>
+ </head>
+ <body>
+    <ol id="elem">
+        <li>Привет</li>
+        <li>Мир</li>
+      </ol>
+      
+      <script>
+        function clear(elem) {
+  while (elem.firstChild) {
+    elem.firstChild.remove();
+  }
+}
+        clear(elem);
+        console.log(elem)
+      </script>
+ </body>
+</html>
