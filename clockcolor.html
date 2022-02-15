@@ -35,20 +35,44 @@ justify-content: center;
      let times = ['hh', 'mm', 'ss']
      document.body.append(clocks)
 
-     for(let i = 0; i < spans.length; i++){
+     function defolt(){
+        for(let i = 0; i < spans.length; i++){
         var span = document.createElement('span')
         let id = spans[i]
         if(i === spans.length-1){
             span.textContent = times[i]
-
-        }
+            }
         else{
             span.textContent = times[i] + ':'
         }
         span.setAttribute('id', id)
         p.append(span)
      }
+     }
+     defolt()
      clocks.append(p)
+     var time;
+     start.addEventListener('click', () => { time = setInterval(() => {let date = new Date()
+     let h = date.getHours()
+     let m = date.getMinutes()
+     let s =  date.getSeconds()
+     let massiv = [h, m, s]
+     let child = p.childNodes;
+     for(let i = 0; i < child.length; i++){
+        if(i === spans.length-1){
+            child[i].textContent = massiv[i]
+            }
+        else{
+            child[i].textContent = massiv[i] + ':'
+        }
+        if(massiv[i] < 10){
+             child[i].textContent = '0' + massiv[i]
+         }
+     }
+     }, 1000)})
+     stopc.addEventListener('click', () => {
+        clearInterval(time)
+    })
     
 
      for(let i = 0; i < arr.length; i++){
