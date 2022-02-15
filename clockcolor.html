@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>clocks</title>
+  <style>div button {
+    display: inline-flex;
+align-items: center;
+justify-content: center;
+      width: 3.5em;
+      height: 1.5em;
+      text-align: center;
+    }
+    #red{
+        color: red
+    }
+    #green{
+        color: green
+    }
+    #blue{
+        color: blue
+    }
+</style>
+ </head>
+ <body>
+    <script>
+     let start = document.createElement('button')
+     let stopc = document.createElement('button')
+     let clocks = document.createElement('div')
+     let p = document.createElement('p')
+     start.textContent = 'Старт'
+     stopc.textContent = 'Стоп'
+     let arr = [start, stopc]
+     let spans = ['red', 'green', 'blue']
+     document.body.append(clocks)
+
+     for(let i = 0; i < spans.length; i++){
+        let span = document.createElement('span')
+        let id = spans[i]
+        span.setAttribute('id', id)
+        p.append(span)
+     }
+     clocks.append(p)
+     span.length
+    
+
+     for(let i = 0; i < arr.length; i++){
+        clocks.append(arr[i])
+        }
+    </script>
+ </body>
+</html>
