@@ -47,6 +47,7 @@
          }
      }
      p.textContent = massiv.join(':')
+     p.style.color = color()
      }, 1000)})
      stopc.addEventListener('click', () => {
         clearInterval(time)
@@ -54,6 +55,11 @@
      for(let i = 0; i < arr.length; i++){
         clocks.append(arr[i])
         }
+    function color(){
+        var o = Math.round, r = Math.random, s = 255;
+        return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')'; 
+        }
+   
 
 
  </script>
