@@ -32,16 +32,23 @@ justify-content: center;
      stopc.textContent = 'Стоп'
      let arr = [start, stopc]
      let spans = ['red', 'green', 'blue']
+     let times = ['hh', 'mm', 'ss']
      document.body.append(clocks)
 
      for(let i = 0; i < spans.length; i++){
-        let span = document.createElement('span')
+        var span = document.createElement('span')
         let id = spans[i]
+        if(i === spans.length-1){
+            span.textContent = times[i]
+
+        }
+        else{
+            span.textContent = times[i] + ':'
+        }
         span.setAttribute('id', id)
         p.append(span)
      }
      clocks.append(p)
-     span.length
     
 
      for(let i = 0; i < arr.length; i++){
