@@ -37,6 +37,7 @@
      var time;
      p.textContent = 'hh:mm:ss'
      start.addEventListener('click', () => { time = setInterval(() =>{let date = new Date()
+     p.style.color = color()
      let h = date.getHours()
      let m = date.getMinutes()
      let s =  date.getSeconds()
@@ -47,7 +48,6 @@
          }
      }
      p.textContent = massiv.join(':')
-     p.style.color = color()
      }, 1000)})
      stopc.addEventListener('click', () => {
         clearInterval(time)
@@ -56,8 +56,11 @@
         clocks.append(arr[i])
         }
     function color(){
-        var o = Math.round, r = Math.random, s = 255;
-        return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')'; 
+       let colors = ['green', 'red', 'blue', 'purple', 'brown']
+       var rand = Math.floor(Math.random() * colors.length)
+       return(colors[rand])
+       
+       
         }
    
 
