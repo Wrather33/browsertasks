@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>clocks</title>
+  <style>
+      div button {
+        display: inline-flex;
+  align-items: center;
+  justify-content: center;
+          width: 3.5em;
+          height: 1.5em;
+          text-align: center;
+        }
+        p{
+            color: blue
+        }
+  </style>
+ </head>
+ <body>
+ <script>
+     let clocks = document.createElement('div')
+     let p = document.createElement('p')
+     let start = document.createElement('button')
+     let stopc = document.createElement('button')
+     start.textContent = 'Старт'
+     stopc.textContent = 'Стоп'
+     let arr = [start, stopc]
+     clocks.append(p)
+     document.body.append(clocks)
+     var time;
+     p.textContent = 'hh:mm:ss'
+     start.addEventListener('click', () => { time = setInterval(() =>{let date = new Date()
+     let h = date.getHours()
+     let m = date.getMinutes()
+     let s =  date.getSeconds()
+     let massiv = [h, m, s];
+     for(let i = 0; i < massiv.length; i++){
+         if(massiv[i] < 10){
+             massiv[i] = '0' + massiv[i]
+         }
+     }
+     p.textContent = massiv.join(':')
+     }, 1000)})
+     stopc.addEventListener('click', () => {
+        clearInterval(time)
+    })
+     for(let i = 0; i < arr.length; i++){
+        clocks.append(arr[i])
+        }
+
+
+ </script>
+ </body>
+</html>
