@@ -122,7 +122,7 @@
     e.setAttribute('id', 'choice')
     let p = document.createElement('p')
     let ptime = new Date(year, mon-1, e.textContent)
-    p.textContent = ptime
+    p.textContent = ptime.toDateString()
     cal.append(p)
     setTimeout(() =>{
         p.remove()
