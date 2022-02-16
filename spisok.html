@@ -6,12 +6,14 @@
  </head>
  <body>
      <script>
-        let list = document.createElement('ul')
+        var list = document.createElement('ul')
         document.body.append(list)
             function get(){
             var take = prompt("Введите пункт:")
             if(take !== '' && take !== null){
+                let styles = prompt('введите цвет элемента')
                 let point = document.createElement('li')
+                point.style.color = styles
                 point.textContent = take
                 list.append(point)
                 return true
@@ -21,11 +23,20 @@
                 return false
             }
         }
+        function repeat(){
         let result = true
         while(result){
             result = get()
         }
-        
-     </script>
+        }
+        repeat()
+        let newlist = confirm('создать новый список?')
+        if(newlist){
+            list.remove()
+            list = document.createElement('ul')
+            document.body.append(list)
+            repeat()
+        }
+        </script>
  </body>
 </html>
