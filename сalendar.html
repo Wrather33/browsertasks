@@ -93,10 +93,8 @@
                         var doptd = document.createElement('td')
                         doptd.setAttribute('id', 'tab')
                         doptr.append(doptd)
-                        if(point > count){
-                            doptd.textContent = ' '
-                        }
-                        else{
+    
+                        if(point <= count){
                             doptd.textContent = point++
                         }
                         if(l >= 5 && l <= 7){
@@ -121,8 +119,10 @@
     let id = e.getAttribute('id')
     e.setAttribute('id', 'choice')
     let p = document.createElement('p')
+    if(e.textContent){
     let ptime = new Date(year, mon-1, e.textContent)
     p.textContent = ptime.toDateString()
+    }
     cal.append(p)
     setTimeout(() =>{
         p.remove()
