@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Calendar</title>
+  <style>
+      table {
+      border-collapse: collapse;
+    }
+
+    td,
+    th {
+      border: 1px solid black;
+      padding: 3px;
+      text-align: center;
+    }
+
+    th {
+      font-weight: bold;
+      background-color: #E6E6E6;
+    }
+  </style>
+ </head>
+ <body>
+ </body>
+ <script>
+     let cal = document.createElement('div')
+     function createCalendar(elem, year, month){
+         let days = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс']
+
+         let table = document.createElement('table')
+
+         let date = new Date(year, month-1)
+         let count = new Date(year, month, 0).getDate()
+         let day = date.getDay()
+         let value = count;
+         
+
+         let point = 1;
+
+         for(let i = 0; i < 6; i++){
+             if(!i){
+                let tr = document.createElement('tr')
+                table.append(tr)
+                for(let i = 0; i < 7; i++){
+                    let td = document.createElement('td')
+                    td.textContent = days[i]
+                    td.style.backgroundColor = 'gray'
+                    tr.append(td)
+                    }}
+            else{
+                let tr = document.createElement('tr')
+                table.append(tr)
+                for(let j = 0; j < 7; j++){
+                        let td = document.createElement('td')
+                        tr.append(td)
+                        if(day === 0){
+                            day = 7
+                        }
+                        if(j >= day-1 && i < 2){
+                            td.textContent = point++
+                            value--
+                            }
+                            else if(i > 1 && point <= count) {
+                            td.textContent = point++
+                            value--
+                        }
+        
+                }
+                
+                
+            }}
+            if(value){
+                for(let p = 0; p <= value; p++){
+                if(!p){
+                    var doptr = document.createElement('tr')
+                    table.append(doptr)
+                    for(let l = 0; l < 7; l++){
+                        var doptd = document.createElement('td')
+                        doptr.append(doptd)
+                        if(point > count){
+                            doptd.textContent = ' '
+                        }
+                        else{
+                            doptd.textContent = point++
+                        }
+                    }
+                }
+                
+                }
+            }
+            
+            
+                            cal.append(table)
+
+     }
+     document.body.append(cal)
+     createCalendar(cal, 2019, 12)
+ </script>
+</html>
