@@ -14,10 +14,20 @@
       padding: 3px;
       text-align: center;
     }
+    td:hover{
+        border: 0.1em solid red;
+    }
 
     th {
       font-weight: bold;
       background-color: #E6E6E6;
+    }
+    #choice{
+        background-color: red;
+        color: white;
+    }
+    #holiday{
+        background-color: pink;
     }
   </style>
  </head>
@@ -53,6 +63,7 @@
                 table.append(tr)
                 for(let j = 0; j < 7; j++){
                         let td = document.createElement('td')
+                        td.setAttribute('id', 'tab')
                         tr.append(td)
                         if(day === 0){
                             day = 7
@@ -66,7 +77,7 @@
                             value--
                         }
                         if(j >= 5 && j <= 7){
-                            td.style.backgroundColor = 'pink'
+                            td.setAttribute('id', 'holiday')
                         }
         
                 }
@@ -80,6 +91,7 @@
                     table.append(doptr)
                     for(let l = 0; l < 7; l++){
                         var doptd = document.createElement('td')
+                        doptd.setAttribute('id', 'tab')
                         doptr.append(doptd)
                         if(point > count){
                             doptd.textContent = ' '
@@ -88,7 +100,7 @@
                             doptd.textContent = point++
                         }
                         if(l >= 5 && l <= 7){
-                            doptd.style.backgroundColor = 'pink'
+                            doptd.setAttribute('id', 'holiday')
                         }
                     }
                 }
@@ -102,5 +114,23 @@
      }
      document.body.append(cal)
      createCalendar(cal, 2019, 12)
+     document.querySelectorAll('td')
+.forEach(e => e.addEventListener("click", function() {
+    let id = e.getAttribute('id')
+    e.setAttribute('id', 'choice')
+    setTimeout(() =>{
+        if(id === 'holiday'){
+            e.setAttribute('id', 'holiday')
+
+        }
+        else{
+            e.setAttribute('id', 'tab')
+        }
+       
+    }, 500)
+}));
+     
+     
+     
  </script>
 </html>
