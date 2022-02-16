@@ -113,21 +113,27 @@
 
      }
      document.body.append(cal)
-     createCalendar(cal, 2019, 12)
+     let year = 2019
+     let mon = 12
+     createCalendar(cal, year, mon)
      document.querySelectorAll('td')
 .forEach(e => e.addEventListener("click", function() {
     let id = e.getAttribute('id')
     e.setAttribute('id', 'choice')
+    let p = document.createElement('p')
+    let ptime = new Date(year, mon-1, e.textContent)
+    p.textContent = ptime
+    cal.append(p)
     setTimeout(() =>{
+        p.remove()
         if(id === 'holiday'){
             e.setAttribute('id', 'holiday')
-
-        }
+            }
         else{
             e.setAttribute('id', 'tab')
         }
        
-    }, 500)
+    }, 1000)
 }));
      
      
