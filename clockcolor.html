@@ -63,8 +63,11 @@ justify-content: center;
             child[i].textContent = massiv[i] + ':'
         }
         if(massiv[i] < 10){
-             child[i].textContent = '0' + massiv[i]
+             child[i].textContent = '0' + massiv[i] + ':'
          }
+         if(massiv[i] < 10 && i === child.length-1){
+            child[i].textContent = '0' + massiv[i]
+            }
      }
      }, 1000)})
      stopc.addEventListener('click', () => {
