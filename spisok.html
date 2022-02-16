@@ -32,9 +32,11 @@
         repeat()
         let newlist = confirm('создать новый список?')
         if(newlist){
+            if(document.getElementsByTagName('li').length){
             list.remove()
             list = document.createElement('ul')
             document.body.append(list)
+            }
             repeat()
         }
         </script>
