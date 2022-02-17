@@ -29,6 +29,10 @@
     #holiday{
         background-color: pink;
     }
+    #days{
+        background-color: 'gray';
+
+    }
   </style>
  </head>
  <body>
@@ -55,7 +59,7 @@
                 for(let i = 0; i < 7; i++){
                     let td = document.createElement('td')
                     td.textContent = days[i]
-                    td.style.backgroundColor = 'gray'
+                    td.setAttribute('id', 'days')
                     tr.append(td)
                     }}
             else{
@@ -116,13 +120,13 @@
      createCalendar(cal, year, mon)
      document.querySelectorAll('td')
 .forEach(e => e.addEventListener("click", function() {
-    let id = e.getAttribute('id')
-    e.setAttribute('id', 'choice')
     let p = document.createElement('p')
-    if(e.textContent){
+    if(e.textContent && e.getAttribute('id') !== 'days'){
     let ptime = new Date(year, mon-1, e.textContent)
     p.textContent = ptime.toDateString()
     }
+    let id = e.getAttribute('id')
+    e.setAttribute('id', 'choice')
     cal.append(p)
     setTimeout(() =>{
         p.remove()
