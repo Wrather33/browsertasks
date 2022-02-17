@@ -30,7 +30,7 @@
         background-color: pink;
     }
     #days{
-        background-color: 'gray';
+        background-color: gray;
 
     }
   </style>
@@ -133,8 +133,11 @@
         if(id === 'holiday'){
             e.setAttribute('id', 'holiday')
             }
-        else{
+        else if(id === 'tab'){
             e.setAttribute('id', 'tab')
+        }
+        else{
+            e.setAttribute('id', 'days')
         }
        
     }, 1000)
