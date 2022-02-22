@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+  <head>
+      <meta charset="utf-8"/> 
+  <title>картинки</title>
+</head>
+<body>
+    <img src="kit1.jpg">
+    <img src="kit2.jpg">
+    <img src="kit3.jpg">
+    <script>
+        document.querySelectorAll('img').forEach((e) => e.addEventListener('click', function my(){
+            alert(e.src)
+            let size = ' ' + e.width + ' : ' +  e.height + ' '
+            alert(size)
+        }))
+        
+    </script>
+
+</body>
+</html>
