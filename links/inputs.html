@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>инпуты</title>
+  <style>
+  </style>
+ </head>
+ <body>
+    <script>
+        for(let i = 0; i < 6; i++){
+            let input = document.createElement('input')
+            input.style.display = 'block'
+            document.body.append(input)
+            }
+        document.querySelectorAll('input').forEach((e) => e.addEventListener("mouseout", function func(){
+            let p = document.createElement('p')
+            p.setAttribute('id', 'text')
+            let text = e.value
+            p.textContent = text
+            document.body.append(p)
+        }))
+        document.querySelectorAll('input').forEach((e) => e.addEventListener("click", function clc(){
+            alert(e.value);
+            e.removeEventListener('click', clc)
+        }))
+    </script>
+ 
+ </body>
+</html>
