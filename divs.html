@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>divs</title>
+  <style>
+    #switcher{
+      margin: 0 auto;
+      width: 4em;
+      height: 2em;
+      background-color: gray;
+      border: 1px solid black;
+      
+    }
+    #slider{
+      width: 1.5em;
+      height: 2em;
+      background-color: white;
+    }
+  </style>
+ </head>
+ <body>
+   <div id="switcher">
+     <div id="slider"></div>
+   </div>
+   <canvas id="canvas"></canvas>
+  <script>
+    let butt = document.getElementById('switcher')
+    let on = false
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+    butt.addEventListener('click', function switcher(){
+    if(!on){
+    document.getElementById('slider').style.float = 'right'
+    document.getElementById('switcher').style.backgroundColor = 'green'
+    on = true
+    let wid = prompt('длина?')
+    let hei = prompt('высота?')
+    let col = prompt('цвет?')
+    ctx.fillStyle = col;
+    ctx.fillRect(100, 100, wid, hei);
+    }
+    else{
+    document.getElementById('slider').style.float = 'left'
+    document.getElementById('switcher').style.backgroundColor = 'gray'
+    on = false
+    canvas.remove()
+    
+    }
+    })
+    
+    
+  </script>
+
+ </body>
+</html>
