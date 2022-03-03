@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>мышка</title>
+  <style>
+      #setka{
+          margin: 0 auto;
+          width: 40em;
+          height: 40em;
+          border: 2px solid black;
+      }
+      .red{
+          position: absolute;
+          width: 5em;
+          height: 5em;
+          border: 2px solid red;
+      }
+      #butt{
+          text-align: center;
+          margin: 0 auto;
+         width: 5em;
+          height: 5em;
+          border: 2px solid brown;
+      }
+  </style>
+ </head>
+ <body>
+     <div id='setka'></div>
+     <input id='in'></input>
+     <input id='on'></input>
+     <div id='butt'></div>
+     <script>
+        let p = document.createElement('p')
+        let div = document.getElementById('setka')
+        let square = document.createElement('div')
+        let inp = document.getElementById('in')
+        let onp = document.getElementById('on')
+        let butt = document.getElementById('butt')
+        square.setAttribute('class', 'red')
+        div.addEventListener('mousemove', function coordinates(e){
+            p.textContent = 'X: ' + e.clientX + 'Y: ' + e.clientY
+            div.append(p)
+            
+        })
+        div.addEventListener('click', function kvadrat(e){
+            square.style.top = e.clientY + 'px'
+            square.style.left = e.clientX + 'px'
+            div.append(square)
+        })
+        inp.addEventListener('keydown', function updatevalue(e){
+            var x = e.keyCode;
+            p.innerHTML = e.target.value + ':' + x
+            inp.value = ''
+            document.body.append(p)
+            })
+        butt.addEventListener('click', function pokras(e){
+            if(e.ctrlKey){
+                butt.style.backgroundColor = 'red'
+                butt.textContent = '1'
+                }
+                if(e.altKey){
+                butt.style.backgroundColor = 'blue'
+                butt.textContent = '2'
+                }
+                if(e.shiftKey){
+                butt.style.backgroundColor = 'purple'
+                butt.textContent = '3'
+                }
+        })
+        onp.addEventListener('keydown', function valueinp(e){
+            if(e.keyCode === 13){
+             p.innerHTML = e.target.value
+             onp.value = ''
+             document.body.append(p)
+            }
+            
+        })
+     </script>
+
+ </body>
+</html>
