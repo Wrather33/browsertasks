@@ -13,6 +13,7 @@
  <body>
     <button id="getval" name="butt" type="submit">Submit</button>
     <input id="otvet">
+    <p id='out'></p>
  <script>
      for(let i = 0; i<3; i++){
          let inp = document.createElement('input')
@@ -21,11 +22,23 @@
      }
      let butt = document.getElementById('getval')
      let sum = 0;
+     let val = document.getElementById('otvet');
+     let p = document.getElementById('out')
      butt.addEventListener('click', function get(){ 
         document.querySelectorAll('input#sumval').forEach((e) => sum += +e.value);
-        let val = document.getElementById('otvet');
         val.value = sum;
      })
+     document.getElementById('otvet').addEventListener('mouseout', function razbor(){
+         let num = val.value
+         let mass = num.split('')
+         let s = 0;
+         mass.forEach((v) => s += +v)
+         p.textContent = s
+        
+     })
+     
+     
+     
     
 
  </script>
