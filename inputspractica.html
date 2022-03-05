@@ -13,6 +13,8 @@
  <body>
     <button id="getval" name="butt" type="submit">Submit</button>
     <input id="otvet">
+    <input id="srednee">
+    <input id="countwrds">
     <p id='out'></p>
  <script>
      for(let i = 0; i<3; i++){
@@ -24,17 +26,31 @@
      let sum = 0;
      let val = document.getElementById('otvet');
      let p = document.getElementById('out')
+     let sr = document.getElementById('srednee')
+     let cw = document.getElementById('countwrds')
      butt.addEventListener('click', function get(){ 
         document.querySelectorAll('input#sumval').forEach((e) => sum += +e.value);
         val.value = sum;
      })
-     document.getElementById('otvet').addEventListener('mouseout', function razbor(){
+     val.addEventListener('mouseout', function razbor(){
          let num = val.value
          let mass = num.split('')
          let s = 0;
          mass.forEach((v) => s += +v)
          p.textContent = s
         
+     })
+     sr.addEventListener('mouseout', function srednee(){
+         let num = sr.value
+         let mass = num.split(',')
+         let r = 0;
+         mass.forEach((s) => r += +s)
+         p.textContent = Math.floor(r / mass.length)
+     })
+     cw.addEventListener('mouseout', function words(){
+        let words = cw.value
+        let arr = words.split(' ')
+        p.textContent = arr.length
      })
      
      
