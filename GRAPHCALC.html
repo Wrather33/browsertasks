@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>calculator</title>
+  <style>
+      #calc{
+          margin: 0 auto;
+          width: 13em;
+          height: 9;
+          border: 4px solid black
+      }
+      #output{
+          float: right;
+          width: 10em;
+          font-size: 20px;
+          height: 1.5em;
+          direction: rtl;
+          display: block;
+          margin : 0 auto;
+      }
+      #button{
+          
+          text-align: center;
+          width: 3em;
+          height: 3em;
+          border: 2px solid black;
+      }
+      table{
+        margin: 0 auto;
+      }
+  </style>
+ </head>
+ <body>
+     <div id='calc'><input id="output">
+        <table>
+            <tr>
+              <td>7</td>
+              <td>8</td>
+              <td>9</td>
+              <td>+</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>*</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>.</td>
+                <td>/</td>
+                <td>=</td>
+              </tr>
+          </table></div>
+          <script>
+            let input = document.getElementById('output')
+            let td =  document.querySelectorAll('td')
+            td.forEach((t) => t.setAttribute('id', 'button'))
+            let tid = document.querySelectorAll('td#button')
+            input.addEventListener('mousedown', function block(e){
+                e.preventDefault()
+            })
+            tid.forEach((e) => e.addEventListener('click', function value(){
+                let val = e.textContent
+                console.log(val)
+                if(val === '+'){
+                    input.value += e.textContent
+
+                }
+                input.value += e.textContent
+            }))
+            
+          </script>
+    
+    </body>
+</html>
