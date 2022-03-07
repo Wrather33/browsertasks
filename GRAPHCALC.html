@@ -60,6 +60,7 @@
               </tr>
           </table></div>
           <script>
+            let ready = false
             let input = document.getElementById('output')
             let td =  document.querySelectorAll('td')
             td.forEach((t) => t.setAttribute('id', 'button'))
@@ -69,18 +70,22 @@
             })
             tid.forEach((e) => e.addEventListener('click', function value(){
                 let val = e.textContent
-                if(val === '='){
+                if(ready){
+                    input.value = val
+                    ready = false
+
+                }
+                else if(val === '='){
                     let res = input.value
-                    let arr = res.split(/\+|-|\*|\//)
-                    console.log(arr)
-                    input.value = ''
+                    input.value = eval(res)
+                    ready = true
                 }
                 else{
                     input.value += val
                 }
                
             }))
-            
+            /*let arr = res.split(/\+|-|\*|\//)*/
           </script>
     
     </body>
