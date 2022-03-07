@@ -15,7 +15,7 @@
           width: 10em;
           font-size: 20px;
           height: 1.5em;
-          direction: rtl;
+          text-align: right;
           display: block;
           margin : 0 auto;
       }
@@ -69,12 +69,16 @@
             })
             tid.forEach((e) => e.addEventListener('click', function value(){
                 let val = e.textContent
-                console.log(val)
-                if(val === '+'){
-                    input.value += e.textContent
-
+                if(val === '='){
+                    let res = input.value
+                    let arr = res.split(/\+|-|\*|\//)
+                    console.log(arr)
+                    input.value = ''
                 }
-                input.value += e.textContent
+                else{
+                    input.value += val
+                }
+               
             }))
             
           </script>
