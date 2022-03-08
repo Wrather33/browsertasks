@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>guess</title>
+  <style>
+      #table{
+          margin: 0 auto;
+          width: 20em;
+          height: 20em;
+          border: 3px solid black;
+      }
+      #cellelem{
+          width: auto;
+          height: auto;
+          border: 2px solid black;
+          text-align: center;
+
+      }
+      .red{
+          background-color: red;
+      }
+      .green{
+          background-color: green;
+      }
+      #congrat{
+          text-align: center;
+          font-size: 20px;
+          color: red;
+          margin: 0 auto;
+          width: 15em;
+          height: 10em;
+          border: 3px solid red;
+      }
+  </style>
+ </head>
+ <body>
+     <table id="table">
+     <script>
+         let table = document.getElementById('table')
+         let count = 0
+         let arr = []
+         let points = 0;
+         let p = document.createElement('p')
+         document.body.append(p)
+         let congrat = document.createElement('div')
+         congrat.setAttribute('id', 'congrat')
+         let h1 = document.createElement('h1')
+         h1.textContent = 'Congratulations!'
+         congrat.append(h1)
+         
+         for(let i=0; i < 10; i++){
+             let tr = document.createElement('tr')
+             tr.setAttribute('id', 'celline')
+             for(let j=0; j < 10; j++){
+             let td = document.createElement('td')
+             td.setAttribute('id', 'cellelem')
+             td.textContent += ++count
+             tr.append(td)
+         }
+         table.append(tr)
+         }
+         
+         let elem = document.querySelectorAll('td#cellelem')
+         function random(e){
+            for(let i = 0; i < 10; i++){
+                arr.push(Math.floor(Math.random() * e) + 1)
+            } 
+
+         }
+         random(elem.length)
+         console.log(arr)
+         function guess(event){
+            let td = event.target.closest("td");
+            if (!td) return;
+            if(arr.includes(+event.target.textContent)){
+                event.target.setAttribute('class', 'green')
+                p.textContent = ++points
+            }
+            if(points >= 10){
+                table.removeEventListener('click', guess)
+                table.remove()
+                document.body.append(congrat)
+               }
+            else{
+                event.target.setAttribute('class', 'red')
+            } 
+         }
+         table.addEventListener('click', guess)
+     </script>
+  
+ </body>
+</html>
