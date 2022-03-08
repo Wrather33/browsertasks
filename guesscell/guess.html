@@ -26,11 +26,21 @@
       #congrat{
           text-align: center;
           font-size: 20px;
+          color: green;
+          margin: 0 auto;
+          width: 15em;
+          height: 10em;
+          border: 3px solid green;
+      }
+      #lose{
+        text-align: center;
+          font-size: 20px;
           color: red;
           margin: 0 auto;
           width: 15em;
           height: 10em;
           border: 3px solid red;
+
       }
   </style>
  </head>
@@ -43,11 +53,18 @@
          let points = 0;
          let p = document.createElement('p')
          document.body.append(p)
+         let c = document.createElement('p')
+         document.body.append(c)
          let congrat = document.createElement('div')
          congrat.setAttribute('id', 'congrat')
          let h1 = document.createElement('h1')
          h1.textContent = 'Congratulations!'
          congrat.append(h1)
+         let lose = document.createElement('div')
+         lose.setAttribute('id', 'lose')
+         let h2 = document.createElement('h1')
+         h2.textContent = 'You lose!'
+         lose.append(h2)
          
          for(let i=0; i < 10; i++){
              let tr = document.createElement('tr')
@@ -70,21 +87,41 @@
          }
          random(elem.length)
          console.log(arr)
+         let start = false
+         let stops = false
+         let t = 30
+         let counts;
+         function timer(){
+            c.textContent = --t
+             if(!t){
+                clearInterval(counts)
+                table.removeEventListener('click', guess)
+                table.remove()
+                document.body.append(lose)
+             }
+         }
          function guess(event){
             let td = event.target.closest("td");
             if (!td) return;
-            if(arr.includes(+event.target.textContent)){
-                event.target.setAttribute('class', 'green')
-                p.textContent = ++points
+            if(!start){
+                start = true
+                    c.textContent = 30
+                    counts = setInterval(timer, 1000)
             }
-            if(points >= 10){
+            if(points === 10){
                 table.removeEventListener('click', guess)
                 table.remove()
                 document.body.append(congrat)
                }
+            if(arr.includes(+td.textContent)){
+                console.log(arr)
+                arr = arr.filter(e => e !== +td.textContent)
+                event.target.setAttribute('class', 'green')
+                p.textContent = ++points
+            }
             else{
-                event.target.setAttribute('class', 'red')
-            } 
+                td.setAttribute('class', 'red')
+            }
          }
          table.addEventListener('click', guess)
      </script>
