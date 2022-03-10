@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>слайдер текста</title>
+  <style>
+      p{ display: inline; }
+  </style>
+ </head>
+ <body>
+    <p id="slider"></p>
+    <div id="switcher"></div>
+    <p id="left">←</p>
+    <p id="right">→</p>
+    <div id="textslide"></div>
+    <script>
+        /*let p = document.getElementById('slider')
+        let num = 0;
+        timer = setInterval(text, 1000, texts)
+        function text(t){
+            if(num === texts.length){
+                num = 0
+            }
+            p.textContent = texts[num]
+            num++
+            
+        }*/
+        let texts = ['text1', 'text2', 'text3'];
+        let left = document.getElementById('left')
+        let right = document.getElementById('right')
+        let divslide = document.getElementById('textslide')
+        let i = 0;
+        divslide.innerHTML = texts[0]
+        function l(){
+            if(i){
+            i--
+            divslide.innerHTML = texts[i]
+            }
+        }
+        function r() {
+            if(i < texts.length-1){
+            i++
+            divslide.innerHTML = texts[i]
+        }
+    }
+
+        left.addEventListener('click', l)
+        right.addEventListener('click', r)
+    </script>
+ </body>
+</html>
