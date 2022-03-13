@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Предсказания</title>
+  <style>
+      #parent {
+	text-align: center;
+}
+#parent > * {
+	margin-bottom: 10px;
+}
+
+#timer {
+	font-size: 18px;
+}
+#text {
+	font-size: 17px;
+	font-style: italic;
+}
+
+button {
+	padding: 5px 10px;
+	font-size: 15px;
+	cursor: pointer;
+}
+  </style>
+ </head>
+ <body>
+    <div id="parent">
+        <div id="timer">?</div>
+        <div id="text"></div>
+    </div>
+    <script>
+        let text = document.getElementById('text')
+        let timer = document.getElementById('timer')
+        let par = document.getElementById('parent')
+        let i = 0;
+        let know = document.createElement('button')
+        let get = document.createElement('button')
+        know.setAttribute('id', 'start')
+        know.textContent = 'узнать судьбу'
+        get.setAttribute('id', 'stop')
+        get.textContent = 'получить предсказание'
+        par.append(know)
+        
+        let good = ['Вы — на верном пути!', 'Ваша цель достижима.', 'Ваши надежды и планы сбудутся сверх всяких ожиданий.', 'Все твои желания обязательно сбудутся.']
+        let bad = ['Будьте осторожны: Вас хотят обмануть!', 'Вас ожидают тревоги и беспокойства.', 'Результаты дела, которое Вы задумали, сильно разочаруют Вас.']
+        let arr = [good, bad]
+        
+        for(let j = 0; j < arr.length; j++){
+            if(i > arr[j].length){
+                i -= arr[j].length+1
+                console.log(arr[j+1][i])
+                }
+            }
+            function generate(){
+             count = Math.floor(Math.random() * i) + 1
+             timer.textContent = count
+            }
+        function random(){
+            let count = 0;
+            arr.forEach(e => i += e.length)
+            choice = setInterval(generate, 100)
+            know.remove()
+            par.append(get)
+            get.addEventListener('click', getval)
+        }
+        function getval(){
+            get.remove()
+            clearInterval(choice, 100)
+            if(count > arr[0].length){
+                count -= arr[0].length+1
+                text.textContent = arr[1][count]
+                par.style.backgroundColor = 'red'
+                }
+            else{
+                text.textContent = arr[0][count]
+                par.style.backgroundColor = 'green'
+            }
+            
+        }
+        know.addEventListener('click', random)
+
+    </script>
+ </body>
+</html>
