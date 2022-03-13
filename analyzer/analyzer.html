@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>анализатор</title>
+  <style>
+      #area{
+          width: 10em;
+          margin: 0 auto;
+      }
+  </style>
+ </head>
+ <body>
+  <div id='area'>
+    <textarea id='text'></textarea>
+    <input type="checkbox" id="word"><label for="word">getwords</label><Br>
+    <input type="checkbox" id="letter"><label for="letter">getletters</label><Br>
+    <input type="checkbox" id="letter2"><label for="letter2">getletters2</label><Br>
+    <button id="submit">получить данные</button>
+  </div>
+  <script>
+      let textarea = document.getElementById('text')
+      let button = document.getElementById('submit')
+      let div = document.getElementById('area')
+      let word = document.getElementById('word')
+      let letter = document.getElementById('letter')
+      let letter2 = document.getElementById('letter2')
+      button.onclick = function(){
+          if(textarea.value){
+          if(word.checked){
+            let arr = textarea.value.split(' ')
+              let p = document.createElement('p')
+              p.textContent = 'words: ' + arr.length
+              div.append(p)
+              
+          }
+          if(letter.checked){
+            let arr = textarea.value.split('')
+            let p = document.createElement('p')
+              p.textContent = 'letters: ' + arr.length
+              div.append(p)
+              
+            }
+            if(letter2.checked){
+            let arr = textarea.value.split(' ').join('')
+            let p = document.createElement('p')
+              p.textContent = 'letters: ' + arr.length
+              div.append(p)
+            }
+        }
+      }
+      
+      
+  </script>
+ </body>
+</html>
