@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>фио</title>
+  <style>
+      #area{
+          width: 20em;
+          height: 5em;
+          margin: 0 auto;
+      }
+  </style>
+ </head>
+ <body>
+     <div id="area"><input id="fio"></div>
+     <script>
+         let div = document.getElementById('area')
+         let input = document.getElementById('fio')
+         input.addEventListener('keydown', function getfio(e){
+             if(e.keyCode === 13){
+                 let arr = input.value.split(' ')
+                 for(i=0; i<arr.length; i++){
+                     let p = document.createElement('p')
+                     sym = arr[i][0]
+                     if(sym.toLowerCase()){
+                        arr[i] = arr[i].replace(sym, sym.toUpperCase())
+                        p.textContent = arr[i]
+                    }
+                     div.append(p)
+                     
+                 }
+             }
+         })
+     </script>
+</body>
+</html>
