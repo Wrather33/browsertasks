@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>colorgame</title>
+  <style>
+      #field{
+          width: 20em;
+          height: 20em;
+          margin: 0 auto;
+      }
+      #field td {
+	width: 50px;
+	height: 50px;
+	border: 1px solid black;
+	text-align: center;
+	font-weight: bold;
+}
+.red {
+	background: red;
+}
+.green {
+	background: green;
+}
+.blue {
+	background: blue;
+}
+  </style>
+ </head>
+ <body>
+    <table id="field"></table>
+    <script>
+        let table = document.getElementById('field')
+        let rows = 3;
+        let cols = 3;
+        let colors = ['red', 'green', 'blue'];
+        for(let i = 0; i<rows; i++){
+            let tr = document.createElement('tr')
+            for(let j = 0; j<cols; j++){
+                let td = document.createElement('td')
+                td.setAttribute('id', 'cell')
+                td.setAttribute('class', random(colors))
+                tr.append(td)
+            }
+            table.append(tr)
+        }
+        let cellelem = document.querySelectorAll('td#cell')
+        function random(arr){
+            return arr[Math.floor((Math.random() * arr.length))]
+
+        }
+        function next(str){
+            let index = colors.indexOf(str)
+            if(index === colors.length-1){
+                return colors[0]
+            }
+            else{
+                return colors[index+1]
+            }
+            
+        }
+        function color(event){
+            let td = event.target.closest("td");
+            if (!td) return;
+            else{
+                let past = td.getAttribute('class')
+                let col = next(past)
+                td.setAttribute('class', col)
+                let ch = td.getAttribute('class')
+                if(document.getElementsByClassName(ch).length === cellelem.length){
+                    alert('You win!')
+                }
+                }
+            }
+        table.addEventListener('click', color)
+        
+    </script>
+  
+ </body>
+</html>
