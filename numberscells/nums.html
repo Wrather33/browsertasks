@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>числа</title>
+  <style>
+#parent {
+	text-align: center;
+}
+#field {
+	display: inline-block;
+}
+
+#field td {
+	padding: 20px;
+	border: 1px solid black;
+	cursor: pointer;
+}
+.active {
+	background: red;
+}
+  </style>
+ </head>
+ <body>
+    <div id="parent">
+        <table id="field"></table>
+    </div>
+    <script>
+    let field = document.querySelector('#field');
+    function build(field, arr) {
+        field.innerHTML = ''
+        let array = []
+        for(let j=0; j<arr.length; j++){
+            let tr = document.createElement('tr')
+            for(let i=0; i<arr.length; i++){
+            let td = document.createElement('td')
+            td.textContent = arr[j][i]
+            array.push(td)
+            tr.append(td)
+            }
+            field.append(tr)
+        }
+        return array
+        }
+
+    function prepare(size) {
+	let arr = [];
+	
+	arr = range(size * size);
+	arr = shuffle(arr);
+	arr = chunk(arr, size);
+ 
+	return arr;
+    }
+    function range(count) {
+        let arr = []
+        for(let i = 0; i<count;){
+            arr.push(++i)
+        }
+        return arr
+    }
+    function chunk(arr, n) {
+        let array = []
+        let j = 0
+        for(let i=0; i<n; i++){
+            array.push(arr.slice(j, j+n))
+            j += n
+        
+        }
+        return array
+    }
+
+    function shuffle(arr) {
+        arr.sort(() => Math.random() - 0.5);
+        return arr
+    }
+    function activate(cells, size) {
+        let last = ++size;
+        let counter = 1;
+	for (let cell of cells) {
+		cell.addEventListener('click', function() {
+			if(this.textContent == counter){
+                this.classList.add('active');
+                counter++
+            }
+            if(document.getElementsByClassName('active').length === cells.length){
+                start(last)
+            }
+		});
+	}
+}
+start(2);
+function start(size) {
+	activate(build(field, prepare(size)), size);
+}
+    </script>
+  
+ </body>
+</html>
