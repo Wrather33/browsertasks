@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      #field{
+          margin: 0 auto;
+      }
+      #field td {
+	width: 50px;
+	height: 50px;
+	border: 1px solid black;
+	text-align: center;
+	font-weight: bold;
+    font-size: 32px;
+}
+  </style>
+</head>
+<body>
+    <table id="field">
+        <tr>
+            <td value="1"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>  
+    <script>
+        let cells = document.querySelectorAll('#field td');
+        function start(cells){
+            let v = 0;
+            let c = 0;
+            let one = []
+            let two = []
+            for(let cell of cells){
+                cell.setAttribute('value', ++v)
+                cell.addEventListener('click', function click(e){
+                    if(c === 8){
+                        alert('game over')
+                    }
+                    if(c%2===0){
+                    cell.textContent = 'X'
+                    cell.removeEventListener('click', click)
+                    one.push(cell.getAttribute('value'))
+                    c++
+                    }
+                    else{
+                        cell.textContent = 'O'
+                        cell.removeEventListener('click', click)
+                        two.push(cell.getAttribute('value'))
+                        c++
+                    }
+                    if(game(cells, one, two)){
+                        alert(cell.textContent)
+                        
+                    }
+                })
+            }
+        }
+        function game(cells, p1, p2){
+            let combinations = ['123', '456', '789','147','258','369', '357', '159']
+             p1 = p1.join('')
+             p2 = p2.join('')
+             console.log(p1)
+             for(let i=0; i<combinations.length; i++){
+                 if(p1.includes(combinations[i]) || p2.includes(combinations[i])){
+                    return true
+                     
+                 }
+                 else if(p1.includes(combinations[i].split('').reverse().join('')) || p2.includes(combinations[i].split('').reverse().join(''))){
+                     return true
+                 }
+             }
+               
+            }
+        
+        start(cells)
+    </script> 
+</body>
+</html>
