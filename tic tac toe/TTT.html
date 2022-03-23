@@ -69,16 +69,14 @@
             }
         }
         function game(cells, p1, p2){
-            let combinations = ['123', '456', '789','147','258','369', '357', '159']
-             p1 = p1.join('')
-             p2 = p2.join('')
+            let combinations = [[1, 2, 3], '456', '789','147','258','369', '357', '159']
              console.log(p1)
              for(let i=0; i<combinations.length; i++){
                  if(p1.includes(combinations[i]) || p2.includes(combinations[i])){
                     return true
                      
                  }
-                 else if(p1.includes(combinations[i].split('').reverse().join('')) || p2.includes(combinations[i].split('').reverse().join(''))){
+                 else if(p1.includes(combinations[i].reverse()) || p2.includes(combinations[i].reverse().join(''))){
                      return true
                  }
              }

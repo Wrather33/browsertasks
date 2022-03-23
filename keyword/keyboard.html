@@ -3,9 +3,154 @@
 <head> 
 <meta charset="UTF-8">
 <title>keyboard</title>
-<link rel="stylesheet" type="text/css" href="style.css"> 
-<script src="key.js"></script> 
+<link rel="stylesheet" type="text/css" href="style.css">
+<style>
+    #block{
+        width: 40em;
+        height: 20em;
+        margin: 0 auto;
+        border: 3px solid black;
+        background-color: rgb(43, 43, 88);
+    }
+    #result{
+        border: 3px solid rgb(5, 149, 206);
+        border-radius: 10px;
+        display: block;
+        width: 80%;
+        height: 2em;
+        margin: 0 auto;
+    }
+    #keyboard{
+        display: block;
+        margin: 0 auto;
+        margin-top: 1em;
+        border: 3px solid white;
+        border-radius: 10px;
+        width: 38em;
+        height: 12.5em;
+    }
+    #symbol{
+        width: 3em;
+        height: 3em;
+    }
+    #backspace{
+        width: 6.5em;
+        height: 3em;
+    }
+    #tab{
+        width: 6.5em;
+        height: 3em;
+    }
+    #clean{
+        position: absolute;
+        left: 89em;
+        top: 18px;
+            }
+    #Caps{
+        width: 6.5em;
+        height: 3em;
+    }
+    #Enter{
+        width: 6em;
+        height: 3em;
+    }
+    #Shift{
+        width: 6em;
+        height: 3em;
+    }
+    #Shift2{
+        width: 9.5em;
+        height: 3em;
+    }
+    #Ctrl{
+        width: 6em;
+        height: 3em;
+    }
+    #Win{
+        width: 3em;
+        height: 3em;
+    }
+    #Alt{
+        width: 3em;
+        height: 3em;
+    }
+    #Space{
+        width: 21.5em;
+        height: 3em;
+    }
+</style>
 </head>
-<body> 
+<body>
+    <div id="block"><input id="result"><button id='clean'>X</button></input>
+        <div id='keyboard'></div></div>
+    <script>
+        
+let ids = ['backspace', 'tab', 'Caps', 'Enter', 'Shift', 'Shift2', 'Ctrl', 'Win', 'Alt', 'Space', 'Alt', 'Win', 'Ctrl']
+let words =  [['`', `~`], ['1', `!`], ['2', `@`], ['3', `#`], ['4', `$`], ['5', `%`], ['6', `^`], ['7', '&'], ['8', `*`], ['9', `(`], ['0', `)`], ['-', `_`], ['=', `+`], ['<----<br>Backspace'], ['Tab<br><---->'], ['Q', 'Й'], ['W', 'Ц'], ['E', 'У'], ['R', 'К'], ['T', 'Е'], ['Y', 'Н'], ['U', 'Г'], ['I', 'Ш'],
+['O', 'Щ'], ['P', 'З'], [['{ ['], 'Х'], [['} ]'], 'Ъ'], ['|', '/'], ['Caps Lock<br>A'], ['A', 'Ф'], ['S', 'Ы'], ['D', 'В'], ['F', 'А'], ['G', 'П'], ['H', 'Р'],
+['J', 'О'], ['K', 'Л'], ['L', 'Д'], [[': ;'], 'Ж'], [['\" \''], 'Э'], ['Enter<br>----|'], ['Shift<br><---'], 
+['Z', 'Я'], ['X', 'Ч'], ['C', 'С'], ['V', 'М'], ['B', 'И'], ['N', 'Т'], ['M', 'Ь'], [['< ,'], 'Б'], [['> .'], 'Ю'],['?', '/'], ['Shift<br>--->'], ['Ctrl'], ['Win'], ['Alt'], ['Space'], ['Alt'], ['Win'],['Ctrl']]
+let key = document.getElementById('keyboard')
+let put = document.getElementById('result')
+let clr = document.getElementById('clean')
+let press = false
+let russian = false
+document.body.addEventListener('keydown', click, false)
+function click(e) {
+    if(e.keyCode === 16 && e.altKey && !press){
+        russian = true
+        press = true
+    }
+    else if(e.keyCode === 16 && e.altKey && press){
+        press = false
+        russian = false
+    }
+}
+document.body.addEventListener('keyup', click, false)
+
+
+
+clr.onclick = function(){
+put.value = ''
+}
+let fill = function(){
+let c = 0;
+for(let i=0; i<words.length; i++){
+    if(words[i].length === 1){
+        let b = document.createElement('button')
+        b.setAttribute('id', ids[c])
+        b.innerHTML = words[i]
+        b.addEventListener('click', write)
+        c++
+        key.append(b)
+}
+else{
+    let b = document.createElement('button')
+    b.setAttribute('id','symbol')
+    b.innerHTML = `${words[i][1]}<br>${words[i][0]}`
+    b.addEventListener('click', write)
+    key.append(b)
+}
+
+}
+}
+()
+
+function write(e){
+    let val = e.target.textContent.slice('')
+    let targ = e.target.getAttribute('id')
+    if(targ === 'symbol' && russian){
+    put.value += val[0]
+    }
+    else if(targ === 'symbol' && !russian){
+        if(val.length > 2 && e.ctrlKey){
+            put.value += val[3]
+        }
+        else{
+            put.value += val[1]
+        }
+    }
+}
+    </script>
 </body>
 </html>
