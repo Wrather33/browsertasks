@@ -93,6 +93,7 @@ let words =  [['`', `~`], ['1', `!`], ['2', `@`], ['3', `#`], ['4', `$`], ['5', 
 let key = document.getElementById('keyboard')
 let put = document.getElementById('result')
 let clr = document.getElementById('clean')
+let caps = false
 let press = false
 let russian = false
 document.body.addEventListener('keydown', click, false)
@@ -139,6 +140,24 @@ else{
 function write(e){
     let val = e.target.textContent.slice('')
     let targ = e.target.getAttribute('id')
+    if(caps){
+    val = val.toUpperCase()
+    }
+    else{
+        val = val.toLowerCase()
+    }
+    if(targ === 'backspace'){
+        put.value = put.value.slice(0, -1)
+    }
+    if(targ === 'Space'){
+        put.value += ' '
+    }
+    if(targ === 'Caps' && !caps){
+        caps = true
+    }
+    else if(targ === 'Caps' && caps){
+        caps = false
+    }
     if(targ === 'symbol' && russian){
     put.value += val[0]
     }
@@ -150,7 +169,12 @@ function write(e){
             put.value += val[1]
         }
     }
+    if(targ === 'Enter'){
+        alert(put.value)
+        put.value = ''
+    }
 }
+
     </script>
 </body>
 </html>
