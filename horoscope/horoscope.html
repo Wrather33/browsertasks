@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>гороскоп</title>
+  <style>
+      #block{
+          width: 15em;
+          height: 15em;
+          border: 4px solid black;
+          margin: 0 auto;
+          background-color: gainsboro;
+      }
+      #date{
+          display: block;
+          margin: 0 auto;
+      }
+      #result{
+        text-align: center;
+      }
+      
+  </style>
+ </head>
+ <body>
+  <div id="block"><input id='date' type="date"><br>
+    <form id="Form">
+    <input id="choice"type="radio" name="day" value="today" checked> <label for="day">for today</label><br>
+    <input id="choice"type="radio" name="day" value="tomorrow"><label for="day">for tomorrow</label><br>
+    <input id="choice"type="radio" name="day" value="after"><label for="day">for after</label></form>
+    <p id='result'></p></div>
+    <script>
+        let date = document.getElementById('date')
+        let radios = document.querySelectorAll('input#choice')
+        let form = document.getElementById('Form');
+        let value;
+        let datstr;
+        let p = document.getElementById('result')
+        let i = 0;
+        let signs = {
+            козерог: ['Каждый из нас уникален.', 'Врагов нужно любить, их это бесит.', 'Высоко оценивая себя, убедитесь, что вы пользуетесь спросом.'],
+            водолей: ['На пути, ведущем к счастью, не должен стоять никто.', 'Чтобы о вас не сплетничали, сами никого не судите.', 'Борясь с собственным эгоизмом, проявляйте особую настойчивость.'],
+            рыбы: ['Совершая необдуманные действия, вы попусту растрачиваете энергию.', 'Не увлекайтесь оценками и смыслами – просто положитесь на естественный ход жизни.', 'Чтобы не перенапрягать душевные силы, реально оценивайте их.'],
+            овен: ['Не стоит тратить время и силы на мелочи, нужно думать о главном.', 'Определитесь с конечной целью – и у вас появится шанс на победу.', 'Каждому из нас дается столько блага, сколько он сам дал другим.'],
+            телец: ['Стоя на месте, двигаться можно только назад.', 'Что бы ни случилось, все в конечном итоге приведет к лучшему.', 'Стремитесь к успеху и выглядите так, словно вы его уже достигли.'],
+            близнецы: ['Пока ты сам не сдашься, никто тебя не победит.', 'любая борьба имеет смысл, если ты видишь цель.', 'Не забывай о главном!'],
+            рак: ['Не стоит рвать в герои, пока тебя туда не позвали.', 'Все, что происходит с нами, мы приводим в свою жизнь сами.', 'Не нужно ничего просить у сильных. Захотят – сами дадут.'],
+            лев: ['Случайная удача выпадает глупцам. Умные ловят ее постоянно.', 'Делать нужно здесь и сейчас.', 'Любое дело начинается с веры в себя.'],
+            дева: ['Любой успех дела определяется его целью.', 'Если сильно желать, космос поспособствует исполнению твоего желания.', 'Отказываться от собственной мечты недопустимо.'],
+            весы: ['Родившись бескрылым, не препятствуй тому, чтобы они выросли.', 'Радуйся жизни как чуду, которое даровано нам судьбой.', 'Завидуя, ты разрушаешь собственную душу.'],
+            скорпион: ['Конечная цель должна стать точкой отсчета для количества энергетических и временных затрат.', 'Секрет успешной дороги лежит в ее начале.', 'Разделите задачу или проблему на небольшие задачки, с которыми нужно справиться, чтобы добиться успеха, и решайте их постепенно, одну за другой.'],
+            стрелец: ['Тупиковых ситуаций не бывает – выход есть всегда.', 'Вот и пришел завтрашний день, который так беспокоил вас вчера.', 'У собак друзей больше, ведь они метут хвостами, а не языками.'],
+        }
+        document.body.addEventListener('keydown', click, false)
+        function click(e){
+            if(e.keyCode === 13 && !e.repeat){
+                value = date.value
+                datstr = new Date(value)
+                post(datstr)
+                }
+        }
+        function post(date){
+            for (let j=0; j<radios.length; j++) {
+		if (radios[j].checked) {
+			i = j
+		}
+        }
+        let month = date.getMonth()
+        let day = date.getDate()
+        if(month === 11 && day >= 23 || month === 0 && day <= 20){
+            p.innerHTML = Object.values(signs)[0][i]
+        }
+        else if(month === 0 && day >= 21 || month === 1 && day <= 19){
+            p.innerHTML = Object.values(signs)[1][i]
+        }
+        else if(month === 1 && day >= 20 || month === 2 && day <= 20){
+            p.innerHTML = Object.values(signs)[2][i]
+        }
+        else if(month === 2 && day >= 21 || month === 3 && day <= 20){
+            p.innerHTML = Object.values(signs)[3][i]
+        }
+        else if(month === 3 && day >= 21 || month === 4 && day <= 21){
+            p.innerHTML = Object.values(signs)[4][i]
+        }
+        else if(month === 4 && day >= 22 || month === 5 && day <= 21){
+            p.innerHTML = Object.values(signs)[5][i]
+        }
+        else if(month === 5 && day >= 22 || month === 6 && day <= 22){
+            p.innerHTML = Object.values(signs)[6][i]
+        }
+        else if(month === 6 && day >= 23 || month === 7 && day <= 21){
+            p.innerHTML = Object.values(signs)[7][i]
+        }
+        else if(month === 7 && day >= 22 || month === 8 && day <= 23){
+            p.innerHTML = Object.values(signs)[8][i]
+        }
+        else if(month === 8 && day >= 24 || month === 9 && day <= 23){
+            p.innerHTML = Object.values(signs)[9][i]
+        }
+        else if(month === 9 && day >= 24 || month === 10 && day <= 22){
+            p.innerHTML = Object.values(signs)[10][i]
+        }
+        else if(month === 10 && day >= 23 || month === 11 && day <= 22){
+            p.innerHTML = Object.values(signs)[11][i]
+        }
+    
+    }
+    </script>
+ </body>
+</html>
