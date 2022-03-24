@@ -36,6 +36,7 @@
      <button id="left">&larr;</button>
      <button id="right">&rarr;</button>
      <script>
+        let buttons = document.querySelectorAll('button')
         let months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
         let p = document.getElementById('result')
         let ul = document.getElementById('calendar')
@@ -43,10 +44,11 @@
         let year = date.getFullYear()
         let month = date.getMonth()
         let current = date.getDate()
-        let count = new Date(date.getFullYear(), date.getMonth()+1, 0)
+        let count = new Date(year, month+1, 0)
         let days = count.getDate()
-        function cell(){
-            for(let i=1; i<=days; i++){
+        function cell(dayz){
+            ul.innerHTML = ''
+            for(let i=1; i<=dayz; i++){
             let li = document.createElement('li')
             li.setAttribute('id', 'cell')
             if(current === i){
@@ -58,7 +60,44 @@
         result.innerHTML = `${year}<br>${months[month]}`
 
     }
-    cell()
+    cell(days)
+    function switcher(e){
+        let arrow = e.getAttribute('id')
+        if(arrow == 'left'){
+            if(!month){
+                month = 11
+                year--
+                count = new Date(year, month+1, 0)
+            days = count.getDate()
+            }
+            else{
+            month--
+            count = new Date(year, month+1, 0)
+            days = count.getDate()
+            }
+            cell(days)
+        }
+        else{
+            if(month === 11){
+                year++
+                month = 0
+                count = new Date(year, month+1, 0)
+            days = count.getDate()
+            }
+            else{
+            month++
+            count = new Date(year, month+1, 0)
+            days = count.getDate()
+            }
+            cell(days)
+        }
+    }
+    buttons.forEach(e => e.addEventListener('click', () => switcher(e)))
+    document.querySelectorAll('li#cell').forEach(e => e.addEventListener('click', () => {
+        let day = e.textContent
+        let show = new Date(year, month, day)
+        alert(show.toDateString())
+    }))
     </script>
  </body>
 </html>
