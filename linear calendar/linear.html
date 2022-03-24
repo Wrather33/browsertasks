@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>line</title>
+  <style>
+      #cell{
+        display: inline;
+        padding: 1em;
+        border: 3px solid black;
+      }
+      .color{
+          background-color: red;
+      }
+      #result{
+          font-size: 200%;
+          text-align: center;
+      }
+      button{
+          width: 3em;
+          height: 2em;
+      }
+      #left{
+          float: left;
+          margin-left: 40em;
+      }
+      #right{
+          margin-right: 40em;
+          float: right;
+      }
+  </style>
+ </head>
+ <body>
+     <ul id="calendar"></ul>
+     <p id="result"></p>
+     <button id="left">&larr;</button>
+     <button id="right">&rarr;</button>
+     <script>
+        let months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
+        let p = document.getElementById('result')
+        let ul = document.getElementById('calendar')
+        let date = new Date()
+        let year = date.getFullYear()
+        let month = date.getMonth()
+        let current = date.getDate()
+        let count = new Date(date.getFullYear(), date.getMonth()+1, 0)
+        let days = count.getDate()
+        function cell(){
+            for(let i=1; i<=days; i++){
+            let li = document.createElement('li')
+            li.setAttribute('id', 'cell')
+            if(current === i){
+                li.setAttribute('class', 'color')
+            }
+            li.textContent = i
+            ul.append(li)
+        }
+        result.innerHTML = `${year}<br>${months[month]}`
+
+    }
+    cell()
+    </script>
+ </body>
+</html>
