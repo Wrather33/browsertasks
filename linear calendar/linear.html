@@ -35,7 +35,10 @@
      <p id="result"></p>
      <button id="left">&larr;</button>
      <button id="right">&rarr;</button>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
      <script>
+        let elems = $(document)
         let buttons = document.querySelectorAll('button')
         let months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
         let p = document.getElementById('result')
@@ -57,7 +60,17 @@
             li.textContent = i
             ul.append(li)
         }
+        document.querySelectorAll('li#cell').forEach(e => {
+        e.addEventListener('click', () => {
+        let day = e.textContent
+        let show = new Date(year, month, day)
+        alert(show.toDateString())})})
+        elems.on('click', 'ul li', function(){
+            $(this).addClass('color');
+            $('li').not(this).removeClass('color');
+        });
         result.innerHTML = `${year}<br>${months[month]}`
+        press = true
 
     }
     cell(days)
@@ -93,11 +106,6 @@
         }
     }
     buttons.forEach(e => e.addEventListener('click', () => switcher(e)))
-    document.querySelectorAll('li#cell').forEach(e => e.addEventListener('click', () => {
-        let day = e.textContent
-        let show = new Date(year, month, day)
-        alert(show.toDateString())
-    }))
     </script>
  </body>
 </html>
