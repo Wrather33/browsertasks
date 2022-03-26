@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      #block{
+          text-align: center;
+          display: block;
+          margin: 0 auto;
+          width: 50em;
+          height: 40em;
+          font-size: 150%;
+      }
+      span{
+          border: 2px solid black;
+      }
+      td{
+          width: 1em;
+          height: 1em;
+          border: 3px solid black;
+      }
+      #table{
+          margin: auto;
+      }
+    
+  </style>
+</head>
+<body>
+    <div id="block"><span>width</span><br><input id="width"><br><span>height</span><br><input id="height"><table id="table"></table></div>
+    
+    <script>
+        let table = document.getElementById('table')
+        let block = document.getElementById('block')
+        let width = document.getElementById('width')
+        let height = document.getElementById('height')
+        let rows = 0
+        let cols = 0
+        let cellheight = 0;
+        let num = 0;
+        document.body.addEventListener('keydown', click, false)
+        function click(e){
+            if(width.value && height.value){
+            if(e.keyCode === 13 && !e.repeat){
+                rows = width.value
+                cols = height.value
+                for(let i=0; i<rows; i++){
+                    let tr = document.createElement('tr')
+                    for(let j=0; j<cols; j++){
+                        let td = document.createElement('td')
+                        td.textContent = ++num
+                        tr.append(td)
+                    }
+                    table.append(tr)
+                }
+            }}}
+    </script>
+</body>
+</html>
