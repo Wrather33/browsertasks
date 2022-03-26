@@ -24,6 +24,9 @@
       #table{
           margin: auto;
       }
+      #write{
+          width: 2em;
+      }
     
   </style>
 </head>
@@ -43,6 +46,7 @@
         function click(e){
             if(width.value && height.value){
             if(e.keyCode === 13 && !e.repeat){
+                table.innerHTML = ''
                 rows = width.value
                 cols = height.value
                 for(let i=0; i<rows; i++){
@@ -50,11 +54,35 @@
                     for(let j=0; j<cols; j++){
                         let td = document.createElement('td')
                         td.textContent = ++num
+                        td.setAttribute('id', 'elem')
                         tr.append(td)
                     }
                     table.append(tr)
-                }
-            }}}
+                }}
+                num = 0
+                let cells = document.querySelectorAll('td')                    
+                cells.forEach(e => e.addEventListener('click', function write(event){
+                       console.log('ok')
+                        let input = document.createElement('input')
+                        input.setAttribute('id', 'write')
+                        this.innerHTML = ''
+                        this.append(input)
+                        e.removeEventListener('click', write)
+                        document.body.addEventListener('keydown', rewrite)
+                        function rewrite(event){
+                        if(event.keyCode === 32 && !event.repeat){
+                            event.preventDefault()
+                            e.innerHTML = input.value
+                        }
+                    }
+                    }))}}
+                    
+         /*let input = document.createElement('input')
+                        input.setAttribute('id', 'write')
+                        e.innerHTML = ''
+                        this.preventDefault()
+                        this.append(input)*/
+   
     </script>
 </body>
 </html>
