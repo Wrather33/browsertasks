@@ -27,6 +27,14 @@
       #write{
           width: 2em;
       }
+      #elem{
+          background-color: red;
+          color: white;
+      }
+      #ready{
+          background-color: lawngreen;
+          color: black;
+      }
     
   </style>
 </head>
@@ -62,26 +70,21 @@
                 num = 0
                 let cells = document.querySelectorAll('td')                    
                 cells.forEach(e => e.addEventListener('click', function write(event){
-                       console.log('ok')
                         let input = document.createElement('input')
                         input.setAttribute('id', 'write')
                         this.innerHTML = ''
                         this.append(input)
                         e.removeEventListener('click', write)
+                        e.setAttribute('id', 'ready')
                         document.body.addEventListener('keydown', rewrite)
                         function rewrite(event){
                         if(event.keyCode === 32 && !event.repeat){
                             event.preventDefault()
                             e.innerHTML = input.value
+                            e.setAttribute('id', 'elem')
                         }
                     }
                     }))}}
-                    
-         /*let input = document.createElement('input')
-                        input.setAttribute('id', 'write')
-                        e.innerHTML = ''
-                        this.preventDefault()
-                        this.append(input)*/
    
     </script>
 </body>
