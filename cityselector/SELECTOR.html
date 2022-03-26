@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      #country{
+          text-align: center;
+          width: 15em;
+          height: 5em;
+          margin: 0 auto;
+      }
+      p{
+          margin-top: 1em;
+          border: 2px solid black;
+          font-size: 200%;
+      }
+      br{
+        display: block;
+        content: "";
+      }
+    #city{
+        text-align: center;
+          width: 15em;
+          height: 20em;
+          margin: 0 auto;
+          margin-top: 3em;
+          border: 3px solid black;
+    }
+  </style>
+</head>
+<body>
+    <div id="country"><p>Russia</p><br><p>Usa</p></div>
+    <div id="city"></div>
+    <script>
+        let wrap = document.getElementById('city')
+        let cities = {
+            Russia: ['Moscow', 'Saint Petersburg', 'Yekaterinburg', 'Kaliningrad'],
+            Usa: ['Los Angeles', 'New York City', 'Las Vegas']
+        }
+        let country = document.querySelectorAll('p')
+        country.forEach(e => e.addEventListener('click', get));
+        function get(){
+            wrap.innerHTML = ''
+            let country = this.innerHTML
+            let ul = document.createElement('ul')
+            let selected = Object.values(cities[country])
+            for(let key of selected){
+                let li = document.createElement('li')
+                li.textContent = key
+                ul.append(li)
+            }
+            wrap.append(ul)
+            
+        }
+    </script>
+</body>
+</html>
