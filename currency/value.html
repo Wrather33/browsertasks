@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="dns-prefetch" href="https://www.cbr-xml-daily.ru/"/>
+  <style>
+      #rub{
+          margin: auto;
+          text-align: center;
+         font-size: 100%;
+          width: 5em;
+          height: auto;
+          border: 3px solid black;
+          
+      }
+      #choice{
+          width: 2em;
+          height: 2em;
+      }
+      #valute{
+          margin: auto;
+          margin-top: 1em;
+          text-align: center;
+         font-size: 100%;
+          width: 5em;
+          height: 5em;
+          border: 3px solid black;
+          
+      }
+      #count{
+          width: 5em;
+      }
+  </style>
+  <script src="//www.cbr-xml-daily.ru/daily_jsonp.js" async></script>
+  <script>
+      
+        </script>
+</head>
+<body>
+    <div id="rub">RUB<br><input id="count"><br><button id="choice">$</button><ul id="valutes"></ul></div>
+    <div id="valute"></div>
+    <script>
+        let ul = document.getElementById('valutes')
+        let wrap = document.getElementById('rub')
+        let b = document.getElementById('choice')
+        let select = document.getElementById('valute')
+        let input = document.getElementById('count')
+         async function get(url){
+          let response = await fetch(url)
+          if (response.ok) { 
+          let json = await response.json();
+          let result = await json.Valute
+          return result
+        }}
+        b.addEventListener('click', ()=>get('https://www.cbr-xml-daily.ru/daily_json.js').then( res =>
+        { for(let val in res){
+            let li = document.createElement('li')
+            li.setAttribute('id', 'elem')
+            li.textContent = val
+            ul.append(li)
+            li.addEventListener('click', ()=>{ 
+                select.innerHTML = ''
+                if(count.value){
+                    let num = count.value / res[val].Value
+                    select.innerHTML = num.toFixed(1)
+                }
+            })
+        }
+     
+        }))
+   
+    </script>
+</body>
+</html>
