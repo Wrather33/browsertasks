@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      #wrap{
+         text-align: center;
+          margin: auto;
+          width: 20em;
+          height: 20em;
+          border: 3px solid black;
+      }
+      input{
+        display: block;
+      }
+      #ch1{
+        font-weight: bold;
+
+      }
+      #ch2{
+        text-decoration: line-through;
+
+      }
+      #ch3{
+          color: red;
+      }
+  </style>
+</head>
+<body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <div id="wrap">
+        <input type="radio" name="ch1"id="ch1"><label for="ch1">сделать жирным</label>
+        <input type="radio" name="ch1"id="ch2"><label for="ch1">перечеркнуть</label>
+        <input type="radio" name="ch1" id="ch3"><label for="ch1">сделать красным</label>
+        <input type="radio" name="ch1" id="ch4"><label for="ch1">перевернуть</label>
+    <p id='result'>Чизбургер</p></div>
+        <script>
+            let p = document.getElementById('result')
+            let radio = document.querySelectorAll('input')
+            let wrap = document.getElementById('wrap')
+            p.addEventListener('click', click)
+            function click(){
+                let current = parseInt(window.getComputedStyle(p).fontSize)
+                if(current <= 32){this.style.fontSize = `${current*2}px`}
+                else{
+                    this.style.fontSize = '16px'
+                }
+            }
+            radio.forEach(e => e.addEventListener('change', ()=>{
+                p.innerHTML = 'Чизбургер'
+                if(e.getAttribute('id') === 'ch4'){
+                    p.innerHTML = p.textContent.split('').reverse().join('')
+                }
+                else{
+                    p.setAttribute('id', e.getAttribute('id'))
+                }
+                
+            } ))
+           
+        </script>
+</body>
+</html>
