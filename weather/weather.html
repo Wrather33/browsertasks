@@ -30,6 +30,8 @@
     let div = document.querySelector('.weather')
     let apiKey = "543a807584714f107b0c678cada4c9e7";
     let city = prompt("City?");
+    (function(){
+    if(city){
     let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=ru&units=metric&appid=${apiKey}`;
     axios.get(url).then(res => {
         let iconcode = res.data.weather[0].icon;
@@ -42,7 +44,7 @@
         div.style.visibility = 'visible'
         document.querySelector('img#wicon').setAttribute('src', iconurl)
        
-        })
+        })}})()
 </script>
 </body>
 </html>
