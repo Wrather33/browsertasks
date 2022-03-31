@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      #parent {
+	margin: 0 auto;
+	width: 400px;
+}
+.tab {
+	margin-bottom: 10px;
+}
+
+.tab .link a {
+	display: block;
+	padding: 10px;
+	color: black;
+	text-decoration: none;
+	text-align: center;
+	background: #f8f8f8;
+	border: 1px solid gray;
+}
+.tab .link:hover a {
+	background: #f2f2f2;
+}
+
+.tab:not(.active) .text {
+	display: none;
+}
+.tab .text {
+    text-align: center;
+	border: 1px dashed gray;
+	border-top: none;
+	
+	padding: 10px;
+	height: 300px;
+}
+  </style>
+</head>
+<body>
+    <div id="parent">
+        <div class="tab active">
+            <div class="link">
+                <a href="#" >KMFDM</a>
+            </div>
+            <div class="text">
+                Kein Mehrheit Für Die Mitleid
+            </div>
+        </div>
+        <div class="tab">
+            <div class="link">
+                <a href="#" >NIN</a>
+            </div>
+            <div class="text">
+                Nine Inch Nails
+            </div>
+        </div>
+        <div class="tab">
+            <div class="link">
+                <a href="#" >MM</a>
+            </div>
+            <div class="text">
+                Marilyn Manson
+            </div>
+        </div>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script>
+        let elems = $(document)
+        elems.on('click', 'div .tab', function(){
+            $(this).addClass('active');
+            $('div .tab').not(this).removeClass('active');
+        });
+
+    </script>
+</body>
+</html>

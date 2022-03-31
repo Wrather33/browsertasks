@@ -72,6 +72,7 @@
                 cells.forEach(e => e.addEventListener('click', function write(event){
                         let input = document.createElement('input')
                         input.setAttribute('id', 'write')
+                        input.setAttribute('type', 'number')
                         this.innerHTML = ''
                         this.append(input)
                         e.removeEventListener('click', write)
