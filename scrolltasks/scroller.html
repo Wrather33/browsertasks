@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      #scroller{
+        overflow-y: scroll; 
+          margin: auto;
+          text-align: center;
+          width: 20em;
+          height: 10em;
+          border: 3px solid black;
+      }
+      body,
+    html {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    #nums {
+    box-sizing: border-box;
+    padding: 10px;
+      width: 400px;
+      height: 400px;
+      margin: auto;
+      margin-top: 1em;
+      border: 3px solid black;
+      overflow-y: scroll;
+      word-wrap: break-word
+    }
+    #re{
+        display: block;
+        margin: auto;
+        width: 2em;
+        height: 2em;
+        position: -webkit-sticky;
+        position: sticky;
+        background-color: brown;
+        color: white;
+        visibility: hidden;
+    }
+
+  </style>
+</head>
+<body>
+    <div id="scroller"><h1>Прокрути меня</h1></div>
+    <div id="nums"></div>
+    <button id="re">▲</button>
+    <script>
+        let nums = document.getElementById("nums")
+        let scroller = document.getElementById("scroller");
+        let button = document.getElementById('re');
+        (function(){
+            for(let i=0; i<3; i++){
+                scroller.innerHTML += `<p>${new Date().toDateString()}<p>`;
+            }
+        scroller.addEventListener('scroll', function() {
+            scroller.innerHTML += `<p>${new Date().toDateString()}<p>`;
+        })
+        for(let j=0; j<2000; j++){
+            nums.innerHTML += ` ${j}`
+        }
+        nums.addEventListener('scroll', function(e){
+            let scroll = this.scrollTop
+            let height = parseInt(getComputedStyle(this).height)
+            if(scroll > height){
+                button.style.visibility = 'visible'
+                
+            }
+            else{
+                button.style.visibility = 'hidden'
+            }
+            button.addEventListener('click', ()=>{
+                this.scrollTop = 0
+            })
+        })
+        
+        })()
+    </script>
+</body>
+</html>
