@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <select id="genres">
+        <option value="rock">Рок</option>
+        <option value="blues" selected>Блюз</option>
+      </select>
+      <script>
+          let select = document.getElementById('genres');
+          (function selected(){
+              for(let opt of select){
+                  if(opt.selected){
+                      alert(`${opt.textContent}:${opt.value}`)
+                  }
+              }
+              let option = new Option("Рэп", "Rap", true, true);
+              select.append(option)
+              select.addEventListener('change', ()=>{
+                for(let opt of select){
+                  if(opt.selected){
+                      alert(`${opt.textContent}:${opt.value}`)
+                  }
+              }
+              let name = prompt('name')
+              let val =  prompt('value')
+              if(name && val){
+                  let option = new Option(name, val, true, true)
+                  select.append(option)
+              }
+              })
+          })()
+      </script>
+</body>
+</html>
