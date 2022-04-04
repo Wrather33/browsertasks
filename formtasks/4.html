@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      pre:focus { outline: 2px dashed green; }
+      #wrap{
+          position: absolute;
+          width: 10em;
+      }
+  </style>
+</head>
+<body>
+<div id="wrap">
+<pre id="symbol" tabindex="1">
+    ──▄▄█▀▀▀▀▀█▄▄──
+    ▄█▀░░▄▄░░░░░▀█▄
+    █░░░███░░░░░░░█
+    █░░░██▄░░░░░░░█
+    █░░░░▀██▄░██░░█
+    █░░░░░░▀███▀░░█
+    ▀█▄░░░░░░░░░▄█▀
+    ─▄█░░░▄▄▄▄█▀▀──
+    ─█░░▄█▀────────
+    ─▀▀▀▀──────────
+</pre></div>
+<script>
+    let pre = document.getElementById('symbol');
+    let wrap = document.getElementById('wrap');
+    let pos = pre.getBoundingClientRect();
+    (()=>{
+    pre.onclick = function (){
+        pre.focus()}
+})()
+pre.onfocus = function (){
+            pre.onkeydown = function (e){
+                if(!e.repeat){
+                    let pos = pre.getBoundingClientRect();
+                    if(e.code === 'ArrowRight'){
+                        wrap.style.left = pos.left + 50 + 'px'
+
+                    }
+                    else if(e.code === 'ArrowLeft'){
+                        wrap.style.left = pos.left - 50 + 'px'
+
+                    }
+                    else if(e.code === 'ArrowUp'){
+                        wrap.style.top = pos.top - 50 + 'px'
+
+                    }
+                    else if(e.code === 'ArrowDown'){
+                        wrap.style.top = pos.top + 50 + 'px'
+
+                    }
+                   
+                }
+            }
+
+        }
+        
+</script>
+</body>
+</html>
