@@ -32,11 +32,11 @@
            if(e.type === 'keydown'){
             if(e.code === 'Enter' && !e.repeat){
             turn.innerHTML = area.value
-            area.replaceWith(turn)}
+            area?.replaceWith?.(turn)}
            }
            else{
             turn.innerHTML = area.value
-            area.replaceWith(turn)
+            area?.replaceWith?.(turn)
 
            }
         })

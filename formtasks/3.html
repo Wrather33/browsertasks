@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <link rel="stylesheet" href="bagua.css">
+  <link rel="stylesheet" href="my.css">
+
+
+  <p>Кликните на ячейку таблицы, чтобы отредактировать её. Нажмите ОК или ОТМЕНА, когда закончите.</p>
+
+  <table id="bagua-table">
+    <tr>
+      <th colspan="3">Квадрат <em>Bagua</em>: Направление, Элемент, Цвет, Значение</th>
+    </tr>
+    <tr>
+      <td class="nw"><strong>Северо-Запад</strong>
+        <br>Металл
+        <br>Серебро
+        <br>Старейшины
+      </td>
+      <td class="n"><strong>Север</strong>
+        <br>Вода
+        <br>Синий
+        <br>Перемены
+      </td>
+      <td class="ne"><strong>Северо-Восток</strong>
+        <br>Земля
+        <br>Жёлтый
+        <br>Направление
+      </td>
+    </tr>
+    <tr>
+      <td class="w"><strong>Запад</strong>
+        <br>Металл
+        <br>Золото
+        <br>Молодость
+      </td>
+      <td class="c"><strong>Центр</strong>
+        <br>Всё
+        <br>Пурпурный
+        <br>Гармония
+      </td>
+      <td class="e"><strong>Восток</strong>
+        <br>Дерево
+        <br>Синий
+        <br>Будущее
+      </td>
+    </tr>
+    <tr>
+      <td class="sw"><strong>Юго-Запад</strong>
+        <br>Земля
+        <br>Коричневый
+        <br>Спокойствие
+      </td>
+      <td class="s"><strong>Юг</strong>
+        <br>Огонь
+        <br>Оранжевый
+        <br>Слава
+      </td>
+      <td class="se"><strong>Юго-Восток</strong>
+        <br>Дерево
+        <br>Зеленый
+        <br>Роман
+      </td>
+    </tr>
+
+</table>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script>
+      let win = $(window)
+      let td = document.querySelectorAll('td')
+      let redact = false
+      win.on("load", ()=>{
+          td.forEach(e => {
+              e.addEventListener('click', click)
+          })})
+      function click(e){
+        let t = e.target.closest("td");
+        if(redact || !t){
+            return;
+        }
+        redact = true
+        let tr = t.parentNode
+        let div = document.createElement('div')
+        let text = document.createElement('textarea')
+        let ok = document.createElement('button')
+        let cancel = document.createElement('button')
+        ok.textContent = 'OK'
+        cancel.textContent = 'Cancel'
+        text.style.height = $('td').outerHeight() + 'px'
+        div.append(text, ok, cancel)
+        t.replaceWith(div)
+        text.focus()
+        ok.addEventListener('click', ()=>{
+            t.innerHTML = text.value
+            div.replaceWith(t)
+            redact = false
+        })
+        cancel.addEventListener('click', ()=>{
+            div.replaceWith(t)
+            redact = false
+        })
+      }
+  </script>
+
+</body>
+
+</html>
