@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      body{
+          text-align: center;
+      }
+      #result{
+          color: green;
+      }
+  </style>
+</head>
+<body>
+    <input id="num">
+    <p id="result"></p>
+    <script>
+        document.body.onload = function() {
+            let num = document.getElementById('num')
+            let point
+            let res = document.getElementById('result')
+            num.focus()
+            num.onblur = function(){
+            let val = num.value
+            point = setInterval(()=>{
+                res.textContent = --val
+                if(!val){
+                res.textContent = ''
+                clearInterval(point)
+                res.style.color = 'green'
+                num.focus()
+
+            }
+            else if(val <= 3){
+                res.style.color = 'red'
+            }
+            }, 1000)
+        }
+    };
+    </script>
+</body>
+</html>

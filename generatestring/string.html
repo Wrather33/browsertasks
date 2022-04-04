@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      body{
+          text-align: center;
+      }
+  </style>
+</head>
+<body>
+<input id="result">
+<script>
+    window.onload = function(){
+        let res = document.getElementById('result')
+        let len = prompt('length?')
+        if(len && !isNaN(len)){
+            for(let i=0; i<len; i++){
+                res.value += String.fromCharCode(Math.floor(Math.random() * (90 - 65 + 1)) + 65)
+            }
+        }
+        else{
+            len = prompt('length?')
+            }
+    }
+
+</script>  
+</body>
+</html>
