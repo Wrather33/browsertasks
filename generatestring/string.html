@@ -18,7 +18,7 @@
         let len = prompt('length?')
         if(len && !isNaN(len)){
             for(let i=0; i<len; i++){
-                res.value += String.fromCharCode(Math.floor(Math.random() * (90 - 65 + 1)) + 65)
+                res.value += String.fromCharCode(Math.floor(Math.random() * (90 - 65 + 1)) + 65).toLowerCase()
             }
         }
         else{
