@@ -26,18 +26,22 @@
         turn.addEventListener('click', ()=>{ let text = document.createElement('textarea'); turn.replaceWith(text)
         let area = document.querySelector('textarea')
         area.focus()
-        area.addEventListener('blur', ()=>{
+        let list = ["keydown", "blur"];
+        list.forEach(et => {
+        area.addEventListener(et, function hey(e){
+           if(e.type === 'keydown'){
+            if(e.code === 'Enter' && !e.repeat){
             turn.innerHTML = area.value
-            area.replaceWith(turn)
-        })
-        document.body.addEventListener('keydown', function hey(e){
-           if(e.code === 'Enter' && !e.repeat){
-            turn.innerHTML = area.value
-            area.replaceWith(turn)
+            area.replaceWith(turn)}
            }
-        } 
-        )
-    })
+           else{
+            turn.innerHTML = area.value
+            area.replaceWith(turn)
+
+           }
+        })
+    }
+        )})
     </script>
 </body>
 </html>
