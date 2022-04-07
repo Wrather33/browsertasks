@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+      #start{
+          display: block;
+          margin: auto;
+      }
+      #wrap{
+        display: flex;
+        position: fixed;
+        z-index: 0.1;
+        width: 100vw;
+        height: 100vh;
+        align-items: center;
+        background-color: rgba(0,0,0,0.4);
+        justify-content: center;
+      }
+      #modal{
+          display: block;
+          width: 15em;
+          height: 5em;
+          border: 3px solid black;
+          text-align: center;
+          background-color: white;
+      }
+      img{
+          float: left;
+      }
+      input{
+          width: 10em;
+      }
+      p{
+        margin-top: 3%;
+        line-height: 1px;
+      }
+  </style>
+</head>
+
+<body>
+    <button id="start">открыть форму</button>
+    <script>
+      let button = document.getElementById('start')
+      button.onclick = function(){
+        show("Ваше имя?", function(value) {
+          alert(value);
+        });
+      }
+      function show(html, func){
+        let wrap = document.createElement('div')
+        wrap.setAttribute('id', 'wrap')
+        document.body.prepend(wrap)
+        check(document.querySelectorAll('*'), wrap)
+        let win = document.createElement('div')
+        win.setAttribute('id', 'modal')
+        let p = document.createElement('p')
+        p.textContent = html
+        let input = document.createElement('input')
+        let ok = document.createElement('button')
+        ok.textContent = 'OK'
+        let can = document.createElement('button')
+        can.textContent = 'Cancel'
+        let logo = document.createElement('img')
+        logo.setAttribute('src', 'list.png')
+        win.append(logo, p, input, ok, can)
+        wrap.append(win)
+        let buttons = [ok, can]
+        buttons.forEach(b =>{
+          b.addEventListener('click', ()=>{
+          if(b.textContent === 'OK' && input.value){
+            func(input.value)
+            wrap.remove()
+            check(document.querySelectorAll('*'))
+          }
+          if(b.textContent === 'Cancel'){
+          func(null)
+          wrap.remove()
+          check(document.querySelectorAll('*'))
+        }
+      
+      })})
+        document.querySelector('div#modal > input').focus()
+          document.onkeydown = function(e){
+            if(!e.repeat){
+              if(e.code === 'Escape'){
+              func(null)
+              wrap.remove()
+              check(document.querySelectorAll('*'))
+            }
+            if(e.code === 'Enter' && input.value){
+              func(input.value)
+              wrap.remove()
+              check(document.querySelectorAll('*'))
+            }
+          }}}
+      function check(arr, el){
+        for(let e of arr){
+          if(e !== el && el){
+            e.setAttribute('tabindex', '-1')
+          }
+        else{
+          e.removeAttribute('tabindex')
+        }}
+      }
+    </script>
+</body>
+</html>
