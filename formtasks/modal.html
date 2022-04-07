@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <title></title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet">
   <style>
       #start{
           display: block;
@@ -31,7 +31,7 @@
           float: left;
       }
       input{
-          width: 10em;
+          width: 11em;
       }
       p{
         margin-top: 3%;
@@ -43,12 +43,25 @@
 <body>
     <button id="start">открыть форму</button>
     <script>
-      let button = document.getElementById('start')
-      button.onclick = function(){
+      let button = document.getElementById('start');
+      var db;
+      let nick;
+      let nicks;
+      let req = indexedDB.open('Names', 3)
+      req.onupgradeneeded = function(){
+         db = req.result
+         if(!db.objectStoreNames.contains('nicks')){
+           db.createObjectStore('nicks', {autoIncrement: true})
+         }
+      }
+      req.onsuccess = function(e) {
+        db = e.target.result;
+        button.onclick = function(){
         show("Ваше имя?", function(value) {
           alert(value);
         });
       }
+    }
       function show(html, func){
         let wrap = document.createElement('div')
         wrap.setAttribute('id', 'wrap')
@@ -71,6 +84,9 @@
         buttons.forEach(b =>{
           b.onclick = function(){
           if(b.textContent === 'OK' && input.value){
+            var transaction = db.transaction(["nicks"],"readwrite");
+            var store = transaction.objectStore("nicks");
+            store.add(input.value)
             func(input.value)
             wrap.remove()
             check(document.querySelectorAll('*'))
@@ -90,6 +106,9 @@
             }
             if(e.code === 'Enter' && input.value){
               func(input.value)
+              var transaction = db.transaction(["nicks"],"readwrite");
+              var store = transaction.objectStore("nicks");
+              store.add(input.value)
               wrap.remove()
               check(document.querySelectorAll('*'))
             }
