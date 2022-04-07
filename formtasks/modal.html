@@ -69,7 +69,7 @@
         wrap.append(win)
         let buttons = [ok, can]
         buttons.forEach(b =>{
-          b.addEventListener('click', ()=>{
+          b.onclick = function(){
           if(b.textContent === 'OK' && input.value){
             func(input.value)
             wrap.remove()
@@ -79,9 +79,7 @@
           func(null)
           wrap.remove()
           check(document.querySelectorAll('*'))
-        }
-      
-      })})
+        }}})
         document.querySelector('div#modal > input').focus()
           document.onkeydown = function(e){
             if(!e.repeat){
