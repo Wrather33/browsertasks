@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet"/>
+  <style>
+       #wrap{
+        display: flex;
+        margin: auto;
+        width: 50vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.2);
+        justify-content: center;
+      }
+      #form{
+          display: block;
+          width: 20em;
+          height: 20em;
+          border: 3px solid black;
+          text-align: center;
+          background-color: rgba(26, 190, 202, 0.2);
+          border-radius: 20px;
+      }
+      input:invalid {
+        background-color: pink;
+      }
+      input:valid {
+        background-color: lightgreen;
+      }
+      #log{
+        display: block;
+          width: 20em;
+          height: 12em;
+          border: 2px solid black;
+          text-align: center;
+          background-color: rgba(174, 34, 187, 0.2);
+          border-radius: 20px;
+      }
+      #sub{
+        width: 5em;
+        height: 2em;
+      }
+
+  </style>
+</head>
+<body>
+    <div id="wrap"><form id="form">
+    <label for="fname"><strong>First name?</strong></label><br>
+    <input type="text" name="fname" id="fname" required pattern="^[a-zA-Z]+$"><br>
+    <label for="lname"><strong>Last name?</strong></label><br>
+    <input type="text" name="lname" id="lname" required pattern="^[a-zA-Z]+$"><br>
+    <label for="age"><strong>Age?</strong></label><br>
+    <input type="number" name="age" id="age" min=16 max=99 required><br>
+    <label for="nname"><strong>Nickname?</strong></label><br>
+    <input type="text" name="nname" id="nname" required minlength="3"><br>
+    <label for="email"><strong>Email?</strong></label><br>
+    <input type="email" name="email" id="email" required><br>
+    <label for="password"><strong>Password?</strong></label><br>
+    <input type="password" name="password" id="password" required minlength=6 ><br>
+    <label for="phone"><strong>Phone Number?</strong></label><br>
+    <input type="tel" name="phone" id="phone" required pattern="\b\d{3}[-.]?\d{3}[-.]?\d{4}\b"><br>
+    <input type="submit" value="Submit" style="margin-top: 0.5em;">
+    </form>
+    <script src="myscript.js"></script>    
+</body>
+</html>
