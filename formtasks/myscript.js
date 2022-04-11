@@ -7,21 +7,23 @@ let nname = document.getElementById('nname')
 let email = document.getElementById('email')
 let pass = document.getElementById('password')
 let num = document.getElementById('phone')
-let getn = document.getElementById('getnname')
-let getpass = document.getElementById('getpass')
+let getn = document.getElementById('gn')
+let getpass = document.getElementById('gpass')
 let login = document.getElementById('log')
+let sub = document.getElementById('sub')
 let db;
+let store;
 let req = indexedDB.open('Users', 3)
 req.onupgradeneeded = function(){
     db = req.result
     if(!db.objectStoreNames.contains('person')){
-      db.createObjectStore('person', {autoIncrement: true})
+      let pass = db.createObjectStore('person', {autoIncrement: true})
+      pass.createIndex('psw', 'pass');
     }
- }
+  }
+  
 req.onsuccess = function(e) {
-    db = e.target.result;
-    let transaction = db.transaction(["person"],"readwrite");
-    let store = transaction.objectStore("person");
+  db = e.target.result
     form.onsubmit = function(){
         alert('User added!')
         let transaction = db.transaction(["person"],"readwrite");
@@ -36,21 +38,21 @@ req.onsuccess = function(e) {
         }
         store.add(obj)
   }
-  let n = prompt('Ник?')
-  let p = prompt('пароль?')
-    store.openCursor().onsuccess = function(event) {
-    var cursor = event.target.result
-    if(cursor){
-        if(cursor.value.pass === p && cursor.value.nickname === n){
-          alert(cursor.value.name)
-        }
-        else{
-          cursor.continue()
-        }
+
+    sub.onclick = function(){
+    let transaction = db.transaction(["person"],"readwrite");
+    let store = transaction.objectStore("person");
+    let value = getpass.value
+    let psw = store.index("psw");
+    let request = psw.get(value)
+    request.onsuccess = function() {
+      if (request.result) {
+       alert(request.result.nickname)
+      } else {
+        alert('no')
       }
-    }
-  
-    }
+    };}}
+
   
   
 

@@ -31,7 +31,7 @@
       #log{
         display: block;
           width: 20em;
-          height: 12em;
+          height: 5em;
           border: 2px solid black;
           text-align: center;
           background-color: rgba(174, 34, 187, 0.2);
@@ -41,7 +41,11 @@
         width: 5em;
         height: 2em;
       }
-
+      #under{
+        border: 3px solid black;
+        height: 5em;
+        text-align: center;
+      }
   </style>
 </head>
 <body>
@@ -62,6 +66,9 @@
     <input type="tel" name="phone" id="phone" required pattern="\b\d{3}[-.]?\d{3}[-.]?\d{4}\b"><br>
     <input type="submit" value="Submit" style="margin-top: 0.5em;">
     </form>
+    <div id="under">
+      <input type="password" name="password" id="gpass" required minlength=6 ><br>
+    <button id="sub" value="clicker">click me</button>
     <script src="myscript.js"></script>    
 </body>
 </html>
