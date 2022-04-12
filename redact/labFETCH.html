@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      body{
+        text-align: center;
+      }
+  </style>
+</head>
+<body>
+    <button id="accept">Получить</button><br>
+    <input type="text" id="name"><br>
+    <input type="text" id="email"><br>
+    <button id="submit">Отправить</button>
+    <script>
+        let button = document.getElementById('accept')
+        let name = document.getElementById('name')
+        let email = document.getElementById('email')
+        let submit = document.getElementById('submit')
+        button.onclick = function(){
+            fetch('https://jsonplaceholder.typicode.com/users/1').then(response=> {return response.json()}).
+            then(data=> {name.value = data.name; email.value = data.email
+            submit.onclick = function(){
+                let user = {username: name.value, userEmail : email.value}
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+          method: 'POST',
+          body: JSON.stringify(user),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8"
+          }
+        })
+        .then(response => response.json())
+        .then(json => {
+          console.log('response: ' + JSON.stringify(json));
+        })}})}
+    </script>
+</body>
+</html>
