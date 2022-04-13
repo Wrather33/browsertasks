@@ -28,6 +28,7 @@
         if(count){
         fetch(`http://jservice.io/api/random?count=${count}`).then(r=>{return r.json()}).then(d=>{
             function work(){
+                answer.focus()
                 let qq = d[index].question
                 question.innerHTML = `${qq}<br>${right}/${count}`
                 console.log(d[index].answer)
