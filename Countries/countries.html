@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      #Country{
+          margin: auto;
+          width: 30em;
+          height: 40em;
+          border: 2px solid black;
+          text-align: center;
+      }
+      #Data{
+        margin: auto;
+        margin-top: 1em;
+        width: 25em;
+        height: 35em;
+        border: 4px solid black;
+        text-align: center;
+      }
+      #icon{
+          margin: auto;
+      }
+  </style>
+</head>
+<body>
+    <div id="Country"></div>
+    <script>
+        let div = document.getElementById('Country');
+        (function(){
+            fetch('https://restcountries.com/v3.1/all').then(r=> {return r.json()}).then(d=>{
+                div.innerHTML = '<label for="Selector">Choose Country:</label><select name="Selector" id="Selector"></select><div id="Data"></div>'
+                let select = document.getElementById('Selector');
+                let data = document.getElementById('Data');
+                let arr = []
+                for(let key in d){
+                   arr.push(`${d[key].name.common}`)
+                }
+                arr.sort()
+                for(let c in arr){
+                    select.innerHTML += `<option value="${arr[c]}">${arr[c]}</option>`
+                }
+                select.onchange = function(){
+                    Data.innerHTML = ''
+                    update()
+                }
+                function update(){
+                    Data.innerHTML = '<img id="icon"></img>'
+                    let img = document.getElementById('icon');
+                    for(let key in d){
+                        if(select.value === d[key].name.common){
+                            img.src = d[key].flags.png
+                            Data.innerHTML += `<br>Capital: ${d[key].capital}<br>Region: ${d[key].region}<br>Population: <strong>${d[key].population}</strong><br>Timezones:<br>`
+                            for(let i=0; i<d[key].timezones.length; i++){
+                                Data.innerHTML += `${d[key].timezones[i]}<br>`
+                            }
+                        }
+                }
+                }
+            })
+        })()
+    </script>
+</body>
+</html>
