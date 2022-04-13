@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      #quiz{
+          text-align: center;
+      }
+  </style>
+</head>
+<body>
+    <div id="quiz">
+        <p id="question"></p><br>
+        <input id="answer"><br>
+        <button id="submit">ответить</button>
+    </div>
+<script>
+    let quiz = document.getElementById('quiz');
+    let question = document.getElementById('question');
+    let answer = document.getElementById('answer');
+    let submit = document.getElementById('submit');
+    (function(){
+        let count = prompt('Количество вопросов?')
+        let right = 1;
+        let index = 0;
+        if(count){
+        fetch(`http://jservice.io/api/random?count=${count}`).then(r=>{return r.json()}).then(d=>{
+            function work(){
+                let qq = d[index].question
+                question.innerHTML = `${qq}<br>${right}/${count}`
+                console.log(d[index].answer)
+                submit.onclick = function(){
+                    if(answer.value.toLowerCase() === d[index].answer.toLowerCase()){
+                    answer.value = ''
+                    index++
+                    if(index === d.length){
+                        alert('You win')
+                        question.innerHTML = `<strong>Right questions: ${right}</strong>`
+                        submit.disabled = true
+                        return
+                    }
+                    
+                    else{
+                        right++
+                        work()
+                    }
+                }
+                else{
+                    alert('try again!')
+                    answer.value = ''
+                    answer.focus()
+                }
+            }
+            }
+            work()
+            
+        })
+        }
+    })()
+
+</script>  
+</body>
+</html>
