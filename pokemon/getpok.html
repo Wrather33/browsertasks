@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      body{
+          text-align: center;
+      }
+      #result{
+          margin: auto;
+          text-align: center;
+          width: 20em;
+          height: 30em;
+          margin: auto;
+          border: 2px solid black;
+      }
+  </style>
+</head>
+<body>
+    <input id="input"><br>
+    <button id="get">Get</button>
+    <div id="result"></div>
+    <script>
+        let input = document.getElementById('input')
+        let get = document.getElementById('get')
+        let result = document.getElementById('result')
+        let img = document.getElementById('icon')
+        get.onclick = function(){
+            if(input.value){
+                result.innerHTML = ""
+                fetch(`https://pokeapi.co/api/v2/pokemon/${input.value.toLowerCase()}`).then(r=>{return r.json()}).then(d=> {
+                    result.innerHTML += `<img id="icon" src="${d.sprites.front_default}"><p><strong>Name:${d.name}</strong><br><strong>Params:</strong> weight: ${d.weight * 100}<strong>g</strong> height: ${d.height * 10}<strong>cm</strong></p><br><strong>
+                        Type:</strong></br>`
+                    for(let i=0; i<d.types.length; i++){
+                   result.innerHTML += `${d.types[i].type.name}<br>`
+                    }
+                    result.innerHTML += '<strong>Abilities:</strong><br>'
+                    for(let i=0; i<d.abilities.length; i++){
+                    result.innerHTML += `${d.abilities[i].ability.name}</br>`
+                    }
+                    result.innerHTML += '<strong>Stats:</strong><br>'
+                    for(let i=0; i<d.stats.length; i++){
+                    result.innerHTML += `${d.stats[i].stat.name}: ${d.stats[i].base_stat}</br>`
+                    }
+                    
+                }).catch(e => console.log(e))
+        }}
+    </script>
+</body>
+</html>
