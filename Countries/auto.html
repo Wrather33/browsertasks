@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="wrap">
+    <input id="countries">
+    <ul id="list"></ul>
+</div>
+<script>
+    (function(){
+        let input = document.getElementById('countries')
+        let list = document.getElementById('list')
+            fetch('https://restcountries.com/v3.1/all').then(r=> {return r.json()}).then(d=>{
+                let arr = []
+                let result = []
+                for(let key in d){
+                   arr.push(`${d[key].name.common}`)
+                }
+                arr.sort()
+                input.oninput = function(){
+                    list.innerHTML = ""
+                    result = arr.filter(elem =>{
+                        if(elem.toLowerCase().startsWith(input.value.toLowerCase())){
+                            return true
+                        }
+                    
+                    })
+                    for(let i=0; i<result.length; i++){
+                        list.innerHTML += `<li>${result[i]}</li>`
+                        let li = document.querySelectorAll('li')
+                        li.forEach(l => l.onclick = function(){
+                            input.value = l.textContent
+                        })
+                        }
+
+                        }})})()
+</script>
+</body>
+</html>
