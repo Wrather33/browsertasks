@@ -4,14 +4,20 @@
   <meta charset="utf-8" />
   <title></title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+      #wrap img{
+          float: right;
+      }
+  </style>
 </head>
 <body>
-<div id="wrap">
+    <div id="wrap">
+    <img id="img">
     <input id="countries">
-    <ul id="list"></ul>
-</div>
+    <ul id="list"></ul></div>
 <script>
     (function(){
+        let img = document.getElementById('img')
         let input = document.getElementById('countries')
         let list = document.getElementById('list')
             fetch('https://restcountries.com/v3.1/all').then(r=> {return r.json()}).then(d=>{
@@ -34,10 +40,11 @@
                         let li = document.querySelectorAll('li')
                         li.forEach(l => l.onclick = function(){
                             input.value = l.textContent
-                        })
-                        }
-
-                        }})})()
+                            for(let key in d){
+                            if(input.value === d[key].name.common){
+                                img.src = d[key].flags.png
+                            }}
+                        })}}})})()
 </script>
 </body>
 </html>
