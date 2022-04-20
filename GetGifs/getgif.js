@@ -7,8 +7,9 @@
     let tag = input.value
     input.value = ''
     fetch(`https://api.giphy.com/v1/gifs/random?api_key=R0GPJboG4KOQcUEAvtwSmgSy7Le1joZ9&tag=${tag}&rating=g`).then(r=> {return r.json()})
-    .then(d=> 
-        img.src = d.data.images.original.url
+    .then(d=> {
+        console.log(d)
+        img.src = d.data.images.original.url}
     ).catch(e=>alert(e))
     }
     getfile.onchange = function(){
