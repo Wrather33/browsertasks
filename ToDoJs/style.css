@@ -26,13 +26,15 @@
 .ready{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     text-decoration: line-through;
     color: red;
     background-color: palevioletred;
 }
 .added{
     display: flex;
-     justify-content: space-between;
+    justify-content: space-between;
+    align-items: center;
     font-weight: bold;
 }
 .deleter{
@@ -40,4 +42,6 @@
 }
 .deleter:hover{
     background-color: brown;
+}
+.check{
 }
