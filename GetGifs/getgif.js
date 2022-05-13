@@ -5,8 +5,9 @@
     let getfile = document.getElementById('getfile')
     sub.onclick = function(){
     let tag = input.value
+    let opts = tag.split(' ')
     input.value = ''
-    fetch(`https://api.giphy.com/v1/gifs/random?api_key=R0GPJboG4KOQcUEAvtwSmgSy7Le1joZ9&tag=${tag}&rating=g`).then(r=> {return r.json()})
+    fetch(`https://api.giphy.com/v1/gifs/random?api_key=R0GPJboG4KOQcUEAvtwSmgSy7Le1joZ9&tag=${opts[0]}&rating=${opts[1]}`).then(r=> {return r.json()})
     .then(d=> {
         console.log(d)
         img.src = d.data.images.original.url}
