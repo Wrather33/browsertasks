@@ -53,6 +53,12 @@ function change(e){
             e.setAttribute('checked', 'true')
         })
     }
+    if(e.target.id === 'deleteallinputs'){
+            let checkedBoxes = document.querySelectorAll('input.check')
+                checkedBoxes.forEach(e=>{
+                    e.removeAttribute('checked')
+                })
+        }
     if(e.target.tagName.toLowerCase() === 'ul'){
         return
     }
@@ -82,12 +88,6 @@ function change(e){
             let doc = document.createElement('button')
             doc.textContent = 'Unset All'
             doc.setAttribute('id', 'deleteallinputs')
-            doc.onclick = function(){
-                let checkedBoxes = document.querySelectorAll('input.check')
-                checkedBoxes.forEach(e=>{
-                    e.removeAttribute('checked')
-                })
-            }
             document.getElementById('list').prepend(doc)
             let deletebutton = document.createElement('button')
                 deletebutton.textContent = 'Delete All'
