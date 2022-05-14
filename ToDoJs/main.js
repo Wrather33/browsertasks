@@ -98,7 +98,7 @@ function change(e){
                         e.parentElement.remove()
                     })}
         }
-        else if(!checkedBoxes && document.getElementById('setreadystate') && document.getElementById('deleteall')){
+        else if(!checkedBoxes && document.getElementById('setreadystate') && document.getElementById('deleteall') && document.getElementById('deleteallinputs')){
             document.getElementById('setreadystate').remove()
             document.getElementById('deleteall').remove()
             document.getElementById('deleteallinputs').remove()
