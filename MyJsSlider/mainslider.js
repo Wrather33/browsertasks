@@ -86,9 +86,7 @@ class Slider {
             func(index, elem, slides, p, props, func)
         }
       if(props.pags){
-      p.innerHTML = `<input type="checkbox" сlass="check"value="loop">
-      loop<input type="checkbox" сlass="check" value="navs" >navs
-      <input type="checkbox" сlass="check"  value="pags">pags<input type="checkbox" сlass="check" value="auto">auto<br>${slides[index].text}<br>${index+1}/${slides.length}<br><b data-idx='0' class="pag"></b> <b data-idx='1' class="pag"></b> <b data-idx='2' class="pag"></b>`
+      p.innerHTML = `${slides[index].text}<br>${index+1}/${slides.length}<br><b data-idx='0' class="pag"></b> <b data-idx='1' class="pag"></b> <b data-idx='2' class="pag"></b>`
       let b = document.querySelectorAll('.wrap > b')
       for(let key of b){
           key.onclick = function(){
@@ -97,18 +95,16 @@ class Slider {
       }
     }
       else{
-        p.innerHTML = `<input type="checkbox" сlass="check" value="loop">loop<input type="checkbox" сlass="check" value="navs" >navs
-        <input type="checkbox"  сlass="check" value="pags">pags<input type="checkbox" сlass="check" value="auto">auto<br>${slides[index].text}<br>${index+1}/${slides.length}`
+        p.innerHTML = `${slides[index].text}<br>${index+1}/${slides.length}`
       }
 
       elem.src = slides[index].img
       let keys = document.querySelectorAll('input[type="checkbox"]')
       keys.forEach(key=>{
-        key.onclick = function(e){
-            props[key.value] = !props[key.value]
-            alert(key.value = props[key.value])
+        key.addEventListener('click', (e)=>{
+            props[key.value] = key.checked
             func(index, elem, slides, p, props, func)
-        }})
+  })})
   }
   build(){
       let img = document.createElement('img')
