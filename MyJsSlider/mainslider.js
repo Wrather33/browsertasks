@@ -28,6 +28,9 @@ class Slider {
         else if(props.loop){
             index = slides.length-1
         }
+        props.auto = false
+        let i = document.querySelector('input[value="auto"]')
+        i.checked = false
         func(index, getimg, slides, para, props, func)
 
     }
@@ -40,6 +43,9 @@ class Slider {
         else if(props.loop){
             index = 0
         }
+        props.auto = false
+        let i = document.querySelector('input[value="auto"]')
+        i.checked = false
         func(index, getimg, slides, para, props, func)
     }
       this.element.append(left, right)
@@ -90,6 +96,9 @@ class Slider {
       let b = document.querySelectorAll('.wrap > b')
       for(let key of b){
           key.onclick = function(){
+              props.auto = false
+              let i = document.querySelector('input[value="auto"]')
+              i.checked = false
               func(+key.dataset.idx, elem, slides, p, props, func)
           }
       }
